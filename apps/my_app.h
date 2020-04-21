@@ -8,9 +8,11 @@
 #include <../blocks/Box2D/src/Box2D/Dynamics/b2World.h>
 #include <cinder/gl/draw.h>
 #include <cinder/gl/gl.h>
-
+#include <../include/mylibrary/example.h>
 
 namespace myapp {
+
+const size_t kTileSize = 35;
 
 class MyApp : public cinder::app::App {
  public:
