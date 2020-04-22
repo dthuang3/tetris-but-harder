@@ -9,7 +9,7 @@
 #include <cinder/gl/draw.h>
 #include <cinder/gl/gl.h>
 #include <../include/mylibrary/example.h>
-
+#include <Game.h>
 namespace myapp {
 
 const size_t kTileSize = 35;

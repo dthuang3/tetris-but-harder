@@ -11,7 +11,7 @@ namespace Tetris {
 class Tetromino {
   const size_t tile_size_ = 35;
  public:
-  Tetromino(char letter_type);
+  Tetromino();
   ~Tetromino();
   void Draw();
   void update(); 

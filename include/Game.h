@@ -5,16 +5,19 @@
 #ifndef FINALPROJECT_GAME_H
 #define FINALPROJECT_GAME_H
 #include <Box2D/Box2D.h>
+
+#include "Tetromino.h"
+#include <vector>
 namespace Tetris {
-const b2Vec2 kGravity = new b2Vec2(0.0f, -10.0f);
+
 class Game {
  public:
-  Game() explicit;
+  Game(); 
   void Step();
   void Reset();
+  b2World* world_;
  private:
-  std::vector<Tetris::Tetromino> tetrominos_;
-  b2World world_;
+  b2Vec2 kGravity{0.0f, -10.0f};
  private:
   void SetupTetrisBoundary();
 };

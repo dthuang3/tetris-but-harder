@@ -5,35 +5,21 @@
 #include <Box2D/Dynamics/b2Body.h>
 #include <cinder/app/App.h>
 #include <Box2dUtils.h>
-
+#include <Game.h>
 namespace myapp {
 
 using cinder::app::KeyEvent;
 
-b2Vec2 gravity(0.0f, 10.0f);
-b2World world(gravity);
 
 MyApp::MyApp() { }
 
 void MyApp::setup() {
-  b2BodyDef groundBodyDef;
-  groundBodyDef.position.Set(mylibrary::ToPhysics(cinder::app::getWindowWidth()/2), mylibrary::ToPhysics(cinder::app::getWindowHeight()));
-  
-  b2Body* groundBody = world.CreateBody(&groundBodyDef);
-  
-  b2PolygonShape groundBox;
-  groundBox.SetAsBox(mylibrary::ToPhysics(cinder::app::getWindowWidth()/2), mylibrary::ToPhysics(1.0f));
-  
-  groundBody->CreateFixture(&groundBox, 0.0f);
   
 }
 
 void MyApp::update() { }
 
 void MyApp::draw() {
-  cinder::gl::clear();
-  DrawTetrisMatrix();
-  box2d::DebugDraw mDebugDraw;
   
 //  cinder::gl::color(0,1,0);
 //  for (float i = 0; i < 10; i++) {
@@ -43,9 +29,6 @@ void MyApp::draw() {
 //  for (float i = 0; i < 20; i++) {
 //    cinder::gl::drawSolidRect(cinder::Rectf{60, 40 + 35 * i, 95, 35*i + 35 + 40});
 //  }
-  cinder::gl::color(0,1,0);
-  cinder::gl::pushViewMatrix();
-  cinder::gl::popViewMatrix();
 }
 
 void MyApp::keyDown(KeyEvent event) {}

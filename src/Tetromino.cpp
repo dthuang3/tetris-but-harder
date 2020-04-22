@@ -5,6 +5,8 @@
 #include "Tetromino.h"
 
 namespace Tetris {
-Tetromino::Tetromino(char letter_type) {}
+Tetromino::Tetromino() {
+  
+}
 }
 
