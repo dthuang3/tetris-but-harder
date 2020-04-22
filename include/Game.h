@@ -8,16 +8,19 @@
 
 #include "Tetromino.h"
 #include <vector>
-namespace Tetris {
+namespace tetris {
 
 class Game {
+  b2Vec2 gravity_{0.0f, -10.0f};
  public:
   Game(); 
   void Step();
   void Reset();
   b2World* world_;
+  tetris::Tetromino GetCurrentPiece();
  private:
-  b2Vec2 kGravity{0.0f, -10.0f};
+
+  
  private:
   void SetupTetrisBoundary();
 };

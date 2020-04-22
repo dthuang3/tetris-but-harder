@@ -4,7 +4,7 @@
 
 #include "Tetromino.h"
 
-namespace Tetris {
+namespace tetris {
 Tetromino::Tetromino() {
   
 }

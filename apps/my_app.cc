@@ -14,6 +14,9 @@ using cinder::app::KeyEvent;
 MyApp::MyApp() { }
 
 void MyApp::setup() {
+  auto* game = new tetris::Game();
+  game->world_->DrawDebugData();
+  
   
 }
 

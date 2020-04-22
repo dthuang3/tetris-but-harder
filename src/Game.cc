@@ -2,10 +2,11 @@
 // Created by super on 4/21/2020.
 //
 #include <Game.h>
-namespace Tetris {
+
+namespace tetris {
 
 Game::Game() {
-  world_ = new b2World(kGravity);
+  world_ = new b2World(gravity_);
   SetupTetrisBoundary();
 }
 
