@@ -11,17 +11,17 @@ namespace tetris {
 class Tetromino {
   const size_t tile_size_ = 35;
  public:
-  Tetromino();
-  ~Tetromino();
-  void Draw();
-  void update(); 
-  float GetX();
-  float GetY();
-  void Rotate();
+  Tetromino(b2World* world, char type);
   b2Body* body_;
-  float radius_;
  private:
-  
+  void AddFixturesForI(b2PolygonShape shape, b2FixtureDef fixture);
+  void AddFixturesForS(b2PolygonShape shape, b2FixtureDef fixture);
+  void AddFixturesForZ(b2PolygonShape shape, b2FixtureDef fixture);
+  void AddFixturesForJ(b2PolygonShape shape, b2FixtureDef fixture);
+  void AddFixturesForL(b2PolygonShape shape, b2FixtureDef fixture);
+  void AddFixturesForT(b2PolygonShape shape, b2FixtureDef fixture);
+  void AddFixturesForO(b2PolygonShape shape, b2FixtureDef fixture);
+
 };
 
 

@@ -8,7 +8,11 @@ namespace tetris {
 Game::Game() {
   world_ = new b2World(gravity_);
   SetupTetrisBoundary();
+  current_piece_ = nullptr;
 }
+
+
+
 
 void Game::SetupTetrisBoundary() {
   b2BodyDef boundary_def;

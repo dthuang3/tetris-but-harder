@@ -19,10 +19,12 @@ class Game {
   b2World* world_;
   tetris::Tetromino GetCurrentPiece();
  private:
-
+  tetris::Tetromino* current_piece_;
+  std::vector<tetris::Tetromino*> game_pieces_;
   
  private:
   void SetupTetrisBoundary();
+  bool IsToppedOut();
 };
 
 }
