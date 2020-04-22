@@ -2,17 +2,49 @@
 // Created by super on 4/21/2020.
 //
 #include <Game.h>
+#include <cinder/app/App.h>
 
 namespace tetris {
 
 Game::Game() {
   world_ = new b2World(gravity_);
   SetupTetrisBoundary();
-  current_piece_ = nullptr;
+  current_piece_ = new tetris::Tetromino(world_, 'Z');
 }
 
+void Game::Update() {
+  if (is_topped_out_) {
+    return;
+  }
+  if (current_piece_->body_->GetLinearVelocity().Length() <= 0.5 &&
+      current_piece_->body_->GetAngularVelocity() <= 1) {
+    char letter = GetRandomTetrimino();
+    current_piece_ = new tetris::Tetromino(world_, letter);
+  }
+  world_->Step(1.0f / 60.0f, 8,3);
+  
+}
 
-
+char Game::GetRandomTetrimino() {
+  std::mt19937 rng(random_device_());
+  std::uniform_int_distribution<int> uniform_int_distribution(0,7);
+  switch (uniform_int_distribution(rng)) {
+    case 0:
+      return 'I';
+    case 1:
+      return 'J';
+    case 2:
+      return 'L';
+    case 3:
+      return 'S';
+    case 4:
+      return 'Z';
+    case 6:
+      return 'T';
+    case 7:
+      return 'O';
+  }
+}
 
 void Game::SetupTetrisBoundary() {
   b2BodyDef boundary_def;

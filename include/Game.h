@@ -6,25 +6,30 @@
 #define FINALPROJECT_GAME_H
 #include <Box2D/Box2D.h>
 
-#include "Tetromino.h"
+#include <random>
 #include <vector>
+
+#include "Tetromino.h"
 namespace tetris {
 
 class Game {
   b2Vec2 gravity_{0.0f, -10.0f};
  public:
   Game(); 
-  void Step();
+  void Update();
   void Reset();
   b2World* world_;
   tetris::Tetromino GetCurrentPiece();
  private:
   tetris::Tetromino* current_piece_;
   std::vector<tetris::Tetromino*> game_pieces_;
+  bool is_topped_out_;
   
  private:
   void SetupTetrisBoundary();
   bool IsToppedOut();
+  char GetRandomTetrimino();
+  std::random_device random_device_;
 };
 
 }
