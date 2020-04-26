@@ -11,6 +11,7 @@ Game::Game() {
   SetupTetrisBoundary();
   current_piece_ = new tetris::Tetromino(world_, 'Z');
   game_pieces_.push_back(current_piece_);
+  is_topped_out_ = false;
 }
 
 void Game::Update() {
@@ -23,6 +24,17 @@ void Game::Update() {
 //    current_piece_ = new tetris::Tetromino(world_, letter);
 //  }
   world_->Step(1.0f / 60.0f, 8,3);
+  bool past_threshold = current_piece_->body_->GetPosition().y < 70.0f;
+  if (!past_threshold && current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
+    is_topped_out_ = true;
+  }
+  if (is_topped_out_) {
+    return;
+  }
+  if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
+    current_piece_ = new tetris::Tetromino(world_, 'Z');
+    game_pieces_.push_back(current_piece_);
+  }
   float recent = 200;
   float speedNow = current_piece_->body_->GetLinearVelocity().Length();
   recent = 0.1 * speedNow + 0.9 * recent;
@@ -34,11 +46,6 @@ void Game::Update() {
   speedNow = current_piece_->body_->GetLinearVelocity().Length();
   recent = 0.1 * speedNow + 0.9 * recent;
   count++;
-  if (speedNow == 0.0f) {
-    current_piece_ = new tetris::Tetromino(world_, 'Z');
-    game_pieces_.push_back(current_piece_);
-  }
-  
 }
 
 char Game::GetRandomTetrimino() {
@@ -79,5 +86,9 @@ void Game::SetupTetrisBoundary() {
   boundary_body->CreateFixture(&boundary_fixture);
   rectangle.SetAsBox(1.0f, 50.0f, b2Vec2(25.0f, 50.0f), 0); // right wall
   boundary_body->CreateFixture(&boundary_fixture);
+}
+
+bool Game::IsToppedOut() {
+  return is_topped_out_;
 }
 }

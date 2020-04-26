@@ -14,12 +14,14 @@ namespace tetris {
 
 class Game {
   b2Vec2 gravity_{0.0f, -10.0f};
+  const float kTopOutHeight = 90.0f;
  public:
   Game(); 
   void Update();
   void Reset();
   b2World* world_;
   tetris::Tetromino GetCurrentPiece();
+  bool IsToppedOut();
  private:
   tetris::Tetromino* current_piece_;
   std::vector<tetris::Tetromino*> game_pieces_;
@@ -28,7 +30,6 @@ class Game {
   
  private:
   void SetupTetrisBoundary();
-  bool IsToppedOut();
   char GetRandomTetrimino();
   std::random_device random_device_;
 };

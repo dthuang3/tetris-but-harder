@@ -68,6 +68,9 @@ void MyApp::setup() {
 }
 
 void MyApp::update() {
+  if (game_->IsToppedOut()) {
+    return;
+  }
   game_->Update();
 }
 
