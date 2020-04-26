@@ -14,6 +14,8 @@ class Tetromino {
   Tetromino(b2World* world, char type);
   b2Body* body_;
  private:
+  char type_;
+ private:
   void AddFixturesForI(b2PolygonShape shape, b2FixtureDef fixture);
   void AddFixturesForS(b2PolygonShape shape, b2FixtureDef fixture);
   void AddFixturesForZ(b2PolygonShape shape, b2FixtureDef fixture);

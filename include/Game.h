@@ -24,6 +24,7 @@ class Game {
   tetris::Tetromino* current_piece_;
   std::vector<tetris::Tetromino*> game_pieces_;
   bool is_topped_out_;
+  size_t count = 0;
   
  private:
   void SetupTetrisBoundary();

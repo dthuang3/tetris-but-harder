@@ -4,6 +4,7 @@
 
 #include <Box2D/Dynamics/b2Body.h>
 #include <cinder/app/App.h>
+#include <cinder/Log.h>
 #include <Box2dUtils.h>
 #include <Game.h>
 namespace myapp {
@@ -11,16 +12,64 @@ namespace myapp {
 using cinder::app::KeyEvent;
 
 
-MyApp::MyApp() { }
+MyApp::MyApp() = default;
 
 void MyApp::setup() {
-  auto* game = new tetris::Game();
-  game->world_->DrawDebugData();
+  game_ = new tetris::Game();
   
+//  b2Vec2 gravity_{0.0f, -20.0f};
+//  world_ = new b2World(gravity_);
+//  b2BodyDef boundary_def;
+//  boundary_def.type = b2_staticBody;
+//  boundary_def.position.Set(0.0f, 0.0f);
+//
+//  b2Body* boundary_body = world_->CreateBody(&boundary_def);
+//  b2PolygonShape rectangle;
+//
+//  b2FixtureDef boundary_fixture;
+//  boundary_fixture.shape = &rectangle;
+//
+//  rectangle.SetAsBox(25.0f, 1.0f, b2Vec2(0.0f,0.0f), 0); // bottom
+//  boundary_body->CreateFixture(&boundary_fixture);
+//  rectangle.SetAsBox(1.0f, 50.0f, b2Vec2(-25.0f, 50.0f), 0); // left wall
+//  boundary_body->CreateFixture(&boundary_fixture);
+//  rectangle.SetAsBox(1.0f, 50.0f, b2Vec2(25.0f, 50.0f), 0); // right wall
+//  boundary_body->CreateFixture(&boundary_fixture);
+//  
+//  b2BodyDef falling_box_def;
+//  falling_box_def.type = b2_dynamicBody;
+//  falling_box_def.position.Set(0.0f, 15.0);
+//  b2Body* falling_body = world_->CreateBody(&falling_box_def);
+//  b2PolygonShape sq;
+//  b2FixtureDef fix_def;
+//  fix_def.shape = &sq;
+//  fix_def.density = 20.0f;
+//  sq.SetAsBox(5.0f, 5.0f);
+//  falling_body->CreateFixture(&fix_def);
+//  b2Vec2 s;
+//  float a;
+//  world_->Step(1.0f/60.0f, 8, 3);
+//  float recent = 200;
+//  float speedNow = falling_body->GetLinearVelocity().Length();
+//  recent = 0.1 * speedNow + 0.9 * recent;
+//  size_t count = 0;
+//  while (recent > 2) {
+//    world_->Step(1.0f/60.0f, 8, 3);
+//    s = falling_body->GetPosition();
+//    a = falling_body->GetAngularVelocity();
+//    speedNow = falling_body->GetLinearVelocity().Length();
+//    recent = 0.1 * speedNow + 0.9 * recent;
+//    count++;
+//  }
+//  s = falling_body->GetPosition();
+//  auto g = falling_body->GetLinearVelocity();
+//  CI_LOG_D("HELLOW");
   
 }
 
-void MyApp::update() { }
+void MyApp::update() {
+  game_->Update();
+}
 
 void MyApp::draw() {
   

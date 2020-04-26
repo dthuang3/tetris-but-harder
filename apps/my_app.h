@@ -23,7 +23,8 @@ class MyApp : public cinder::app::App {
   void keyDown(cinder::app::KeyEvent) override;
  private:
   void DrawTetrisMatrix();
-
+  b2World* world_{};
+  tetris::Game* game_;
 };
 
 }  // namespace myapp
