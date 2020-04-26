@@ -20,3 +20,12 @@
     * [ ] Continue to finish logic for game
     * [ ] Figure out how to use DebugDraw
     * [ ] Use openGL to visualize the items within the Box2D world
+    
+### 4/26/2020
+* Simplify tetrominos to just basic polygon, the real tetromino shapes too complex to work with in Box2D
+* Re-do the physics world inside Game.cc
+* Create functionality to check when an object is still still/not moving.
+* Still need to:
+    * [ ] Create more types of pieces with simple polygon layout (square, rectangle, triangle)
+    * [ ] Finish logic for game
+    * [ ] Use openGL to visualize the items within the Box2D world
