@@ -4,6 +4,9 @@
 
 #include "Tetromino.h"
 
+#include <cinder/Rect.h>
+#include <cinder/gl/gl.h>
+
 namespace tetris {
 
 Tetromino::Tetromino(b2World* world, char type) {
@@ -15,7 +18,7 @@ Tetromino::Tetromino(b2World* world, char type) {
   b2FixtureDef fixture_def;
   fixture_def.shape = &shape;
   fixture_def.density = 20.0f;
-  shape.SetAsBox(5.0f, 5.0f);
+  shape.SetAsBox(2.5f, 2.5f);
   body_->CreateFixture(&fixture_def);
   type_ = type;
   
@@ -109,6 +112,18 @@ void Tetromino::AddFixturesForT(b2PolygonShape shape, b2FixtureDef fixture) {
 void Tetromino::AddFixturesForO(b2PolygonShape shape, b2FixtureDef fixture) {
   shape.SetAsBox(5.0f, 5.0f, b2Vec2{0.0f, 0.0f}, 0);
   body_->CreateFixture(&fixture);
+}
+
+void Tetromino::Draw() {
+  b2Vec2 box2d_location = body_->GetPosition();
+  float cinder_x = box2d_location.x + 50.0f * screen_scaling_ + x_margin;
+  float cinder_y = box2d_location.y * -7.0f + 700 + y_margin;
+  float top_left_x = cinder_x - 35;
+  float top_left_y = cinder_y - 35;
+  float bottom_right_x = cinder_x + 35;
+  float bottom_right_y = cinder_y + 35;
+  ci::gl::drawSolidRect(cinder::Rectf{ top_left_x, top_left_y, bottom_right_x, bottom_right_y});
+  
 }
 
 }

@@ -48,6 +48,12 @@ void Game::Update() {
   count++;
 }
 
+void Game::Draw() {
+  for (auto& tetromino : game_pieces_) {
+    tetromino->Draw();
+  }
+}
+
 char Game::GetRandomTetrimino() {
   std::mt19937 rng(random_device_());
   std::uniform_int_distribution<int> uniform_int_distribution(0,7);

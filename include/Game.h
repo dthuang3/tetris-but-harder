@@ -22,6 +22,7 @@ class Game {
   b2World* world_;
   tetris::Tetromino GetCurrentPiece();
   bool IsToppedOut();
+  void Draw();
  private:
   tetris::Tetromino* current_piece_;
   std::vector<tetris::Tetromino*> game_pieces_;

@@ -75,7 +75,7 @@ void MyApp::update() {
 }
 
 void MyApp::draw() {
-  
+  ci::gl::clear();
 //  cinder::gl::color(0,1,0);
 //  for (float i = 0; i < 10; i++) {
 //    cinder::gl::drawSolidRect(cinder::Rectf{60 + (35 * i), 40, 35 + 60 + (35 * i),75});
@@ -84,6 +84,7 @@ void MyApp::draw() {
 //  for (float i = 0; i < 20; i++) {
 //    cinder::gl::drawSolidRect(cinder::Rectf{60, 40 + 35 * i, 95, 35*i + 35 + 40});
 //  }
+  game_->Draw();
 }
 
 void MyApp::keyDown(KeyEvent event) {}

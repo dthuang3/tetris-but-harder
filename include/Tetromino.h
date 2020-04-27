@@ -10,9 +10,13 @@ namespace tetris {
 
 class Tetromino {
   const size_t tile_size_ = 35;
+  const float screen_scaling_ = 3.5;
+  const float x_margin = 60;
+  const float y_margin = 40;
  public:
   Tetromino(b2World* world, char type);
   b2Body* body_;
+  void Draw();
  private:
   char type_;
  private:
