@@ -28,4 +28,7 @@
 * Still need to:
     * [ ] Create more types of pieces with simple polygon layout (square, rectangle, triangle)
     * [ ] Finish logic for game
-    * [ ] Use openGL to visualize the items within the Box2D world
+    * [x] Use openGL to visualize the items within the Box2D world
+* Visualized boxes falling in game with openGL
+* Still need to:
+    * [ ] Add object rotation / transformation with keypress
