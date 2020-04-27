@@ -18,7 +18,17 @@ Tetromino::Tetromino(b2World* world, char type) {
   b2FixtureDef fixture_def;
   fixture_def.shape = &shape;
   fixture_def.density = 5.0f;
-  shape.SetAsBox(2.5f, 2.5f);
+  b2Vec2[8] vertices;
+  vertices[0] = b2Vec2{2.5f, 0.0f};
+  vertices[1] = b2Vec2{2.5f, 5.0f};
+  vertices[2] = b2Vec2{-7.5f, 5.0f};
+  vertices[3] = b2Vec2{-7.5f, 0.0f};
+  vertices[4] = b2Vec2{-2.5f, 0.0f};
+  vertices[5] = b2Vec2{-2.5f, -5.0f};
+  vertices[6] = b2Vec2{7.5f, -5.0f};
+  vertices[7] = b2Vec2{7.5f, 0.0f};
+//  shape.SetAsBox(2.5f, 2.5f);
+  shape.Set(vertices, 8);
   body_->CreateFixture(&fixture_def);
   type_ = type;
   color_ = true;
@@ -117,15 +127,15 @@ void Tetromino::AddFixturesForO(b2PolygonShape shape, b2FixtureDef fixture) {
 
 void Tetromino::Draw() {
   b2Vec2 box2d_location = body_->GetPosition();
-  float cinder_x = box2d_location.x + 50.0f * screen_scaling_ + x_margin;
-  float cinder_y = box2d_location.y * -7.0f + 700 + y_margin;
-  float top_left_x = cinder_x - 17.5f;
-  float top_left_y = cinder_y - 17.5f;
-  float bottom_right_x = cinder_x + 17.5f;
-  float bottom_right_y = cinder_y + 17.5f;
-  
-  ci::gl::drawSolidRect(cinder::Rectf{ top_left_x, top_left_y, bottom_right_x, bottom_right_y});
-  
+//  float cinder_x = box2d_location.x + 50.0f * screen_scaling_ + x_margin;
+//  float cinder_y = box2d_location.y * -7.0f + 700 + y_margin;
+//  float top_left_x = cinder_x - 17.5f;
+//  float top_left_y = cinder_y - 17.5f;
+//  float bottom_right_x = cinder_x + 17.5f;
+//  float bottom_right_y = cinder_y + 17.5f;
+//  
+//  ci::gl::drawSolidRect(cinder::Rectf{ top_left_x, top_left_y, bottom_right_x, bottom_right_y});
+//  
 }
 
 }
