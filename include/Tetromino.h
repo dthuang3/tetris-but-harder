@@ -19,6 +19,7 @@ class Tetromino {
   void Draw();
  private:
   char type_;
+  bool color_;
  private:
   void AddFixturesForI(b2PolygonShape shape, b2FixtureDef fixture);
   void AddFixturesForS(b2PolygonShape shape, b2FixtureDef fixture);
