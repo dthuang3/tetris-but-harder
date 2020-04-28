@@ -17,18 +17,34 @@
 * Attempted to use Box2D debugDraw, but unsuccessful. Will continue to attempt in following days.
 * Created a random function to generate a new tetromino. 
 * Still need to:
-    * [ ] Continue to finish logic for game
-    * [ ] Figure out how to use DebugDraw
-    * [ ] Use openGL to visualize the items within the Box2D world
+    * [x] Continue to finish logic for game
+    * [ ] ~~Figure out how to use DebugDraw~~
+    * [x] Use openGL to visualize the items within the Box2D world
     
 ### 4/26/2020
-* Simplify tetrominos to just basic polygon, the real tetromino shapes too complex to work with in Box2D
+* Simplify tetrominos to just basic polygon, the real tetromino shapes are too complex to work with in Box2D
 * Re-do the physics world inside Game.cc
 * Create functionality to check when an object is still still/not moving.
 * Still need to:
-    * [ ] Create more types of pieces with simple polygon layout (square, rectangle, triangle)
-    * [ ] Finish logic for game
+    * [ ] ~~Create more types of pieces with simple polygon layout (square, rectangle, triangle)~~ 
+    * [x] Finish logic for game
     * [x] Use openGL to visualize the items within the Box2D world
 * Visualized boxes falling in game with openGL
 * Still need to:
-    * [ ] Add object rotation / transformation with keypress
+    * [x] Add object rotation / transformation with keypress
+    
+### 4/27/20
+* Change tetrominos back to the original shapes (I figured it out!)
+* Implement Draw() functions for tetrominos
+* Allow object to rotate and move left/right freely while falling through keypress
+* Added colors to each tetromino and make densities of each one equal
+* Fix scalars for the physics world to cinder openGL screen
+* Still need to:
+    * [ ] Add scoring logic (timer)
+    * [ ] Add text to UI / make it prettier
+    * [ ] Cap physics box to prevent pieces from flying out
+    * [ ] Unit testing
+* Extra ideas:
+    * Pause feature/menu?
+    * Maybe add a background?
+    
