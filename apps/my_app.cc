@@ -108,6 +108,10 @@ void MyApp::keyDown(KeyEvent event) {
   }
 }
 
+void MyApp::mouseDown(cinder::app::MouseEvent event) {
+    game_->Reset();
+}
+
 void MyApp::DrawTetrisMatrix() {
   cinder::gl::color(1, 1, 1);
   cinder::gl::drawSolidRect(cinder::Rectf{20, 40, 60, 80 + 20*kTileSize});

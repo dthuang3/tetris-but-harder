@@ -23,6 +23,10 @@ void Game::Update() {
 //    char letter = GetRandomTetrimino();
 //    current_piece_ = new tetris::Tetromino(world_, letter);
 //  }
+  if (current_piece_ == nullptr) {
+    char random_piece_type = GetRandomTetrimino();
+    current_piece_ = new tetris::Tetromino(world_, random_piece_type);
+  }
   world_->Step(1.0f / 60.0f, 8,3);
   bool past_threshold = current_piece_->body_->GetPosition().y < kTopOutHeight;
   if (!past_threshold && current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
@@ -101,5 +105,19 @@ bool Game::IsToppedOut() {
 
 tetris::Tetromino* Game::GetCurrentPiece() {
   return current_piece_;
+}
+
+void Game::Reset() {
+  game_pieces_.clear();
+  b2Body* body_to_destroy = world_->GetBodyList();
+  while (body_to_destroy) {
+    b2Body* temp = body_to_destroy;
+    body_to_destroy = body_to_destroy->GetNext();
+    world_->DestroyBody(temp);
+  }
+  is_topped_out_ = false;
+  SetupTetrisBoundary();
+  current_piece_ = new tetris::Tetromino(world_, 'L');
+  game_pieces_.push_back(current_piece_);
 }
 }

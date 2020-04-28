@@ -14,7 +14,7 @@ namespace tetris {
 
 class Game {
   b2Vec2 gravity_{0.0f, -7.5f};
-  const float kTopOutHeight = 80.0f;
+  const float kTopOutHeight = 90.0f; 
  public:
   Game(); 
   void Update();
