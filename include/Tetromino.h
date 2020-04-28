@@ -19,7 +19,7 @@ class Tetromino {
   void Draw();
  private:
   size_t type_;
-  bool color_;
+  ci::Color color_;
 
 };
 

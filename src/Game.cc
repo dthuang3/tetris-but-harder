@@ -32,7 +32,9 @@ void Game::Update() {
     return;
   }
   if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
-    current_piece_ = new tetris::Tetromino(world_, 1);
+    size_t random_piece_type = GetRandomTetrimino();
+    current_piece_ = new tetris::Tetromino(world_, random_piece_type);
+    current_piece_->body_->ApplyAngularImpulse(-90.0f);
     game_pieces_.push_back(current_piece_);
   }
   float recent = 200;
