@@ -24,7 +24,7 @@ void Game::Update() {
 //    current_piece_ = new tetris::Tetromino(world_, letter);
 //  }
   world_->Step(1.0f / 60.0f, 8,3);
-  bool past_threshold = current_piece_->body_->GetPosition().y < 70.0f;
+  bool past_threshold = current_piece_->body_->GetPosition().y < 80.0f;
   if (!past_threshold && current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
     is_topped_out_ = true;
   }
