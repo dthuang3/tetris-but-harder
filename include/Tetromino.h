@@ -14,20 +14,12 @@ class Tetromino {
   const float x_margin = 60;
   const float y_margin = 40;
  public:
-  Tetromino(b2World* world, char type);
+  Tetromino(b2World* world, size_t type);
   b2Body* body_;
   void Draw();
  private:
-  char type_;
+  size_t type_;
   bool color_;
- private:
-  void AddFixturesForI(b2PolygonShape shape, b2FixtureDef fixture);
-  void AddFixturesForS(b2PolygonShape shape, b2FixtureDef fixture);
-  void AddFixturesForZ(b2PolygonShape shape, b2FixtureDef fixture);
-  void AddFixturesForJ(b2PolygonShape shape, b2FixtureDef fixture);
-  void AddFixturesForL(b2PolygonShape shape, b2FixtureDef fixture);
-  void AddFixturesForT(b2PolygonShape shape, b2FixtureDef fixture);
-  void AddFixturesForO(b2PolygonShape shape, b2FixtureDef fixture);
 
 };
 

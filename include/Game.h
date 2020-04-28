@@ -31,7 +31,7 @@ class Game {
   
  private:
   void SetupTetrisBoundary();
-  char GetRandomTetrimino();
+  size_t GetRandomTetrimino();
   std::random_device random_device_;
 };
 

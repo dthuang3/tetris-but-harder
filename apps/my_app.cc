@@ -84,12 +84,14 @@ void MyApp::draw() {
 //  for (float i = 0; i < 20; i++) {
 //    cinder::gl::drawSolidRect(cinder::Rectf{60, 40 + 35 * i, 95, 35*i + 35 + 40});
 //  }
+  ci::gl::color(0, 0, 0);
+  DrawTetrisMatrix();
   ci::gl::color(0,1,0);
   game_->Draw();
   ci::gl::color(1,0,0);
-  ci::gl::drawLine(ci::vec2{0,733},ci::vec2{400,733});
-  ci::gl::drawLine(ci::vec2{0,698}, ci::vec2{400,698});
-  ci::gl::drawLine(ci::vec2{0,663}, ci::vec2{400,663});
+//  ci::gl::drawLine(ci::vec2{0,733},ci::vec2{400,733});
+//  ci::gl::drawLine(ci::vec2{0,698}, ci::vec2{400,698});
+//  ci::gl::drawLine(ci::vec2{0,663}, ci::vec2{400,663});
 }
 
 void MyApp::keyDown(KeyEvent event) {}

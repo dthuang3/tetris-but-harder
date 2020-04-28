@@ -9,7 +9,7 @@ namespace tetris {
 Game::Game() {
   world_ = new b2World(gravity_);
   SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, 'Z');
+  current_piece_ = new tetris::Tetromino(world_, 1);
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;
 }
@@ -32,7 +32,7 @@ void Game::Update() {
     return;
   }
   if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
-    current_piece_ = new tetris::Tetromino(world_, 'Z');
+    current_piece_ = new tetris::Tetromino(world_, 1);
     game_pieces_.push_back(current_piece_);
   }
   float recent = 200;
@@ -54,24 +54,20 @@ void Game::Draw() {
   }
 }
 
-char Game::GetRandomTetrimino() {
+size_t Game::GetRandomTetrimino() {
   std::mt19937 rng(random_device_());
-  std::uniform_int_distribution<int> uniform_int_distribution(0,7);
+  std::uniform_int_distribution<int> uniform_int_distribution(0,4);
   switch (uniform_int_distribution(rng)) {
     case 0:
-      return 'I';
+      return 1;
     case 1:
-      return 'J';
+      return 3;
     case 2:
-      return 'L';
+      return 4;
     case 3:
-      return 'S';
+      return 5;
     case 4:
-      return 'Z';
-    case 6:
-      return 'T';
-    case 7:
-      return 'O';
+      return 6;
   }
 }
 
@@ -86,11 +82,11 @@ void Game::SetupTetrisBoundary() {
   b2FixtureDef boundary_fixture;
   boundary_fixture.shape = &rectangle;
   
-  rectangle.SetAsBox(25.0f, 1.0f, b2Vec2(0,0), 0); // bottom
+  rectangle.SetAsBox(25.0f, 0.1f, b2Vec2(0,0), 0); // bottom
   boundary_body->CreateFixture(&boundary_fixture);
-  rectangle.SetAsBox(1.0f, 50.0f, b2Vec2(-25.0f, 50.0f), 0); // left wall
+  rectangle.SetAsBox(0.1f, 50.0f, b2Vec2(-25.0f, 50.0f), 0); // left wall
   boundary_body->CreateFixture(&boundary_fixture);
-  rectangle.SetAsBox(1.0f, 50.0f, b2Vec2(25.0f, 50.0f), 0); // right wall
+  rectangle.SetAsBox(0.1f, 50.0f, b2Vec2(25.0f, 50.0f), 0); // right wall
   boundary_body->CreateFixture(&boundary_fixture);
 }
 
