@@ -28,12 +28,12 @@ Tetromino::Tetromino(b2World* world, char type) {
     case 'S': // "S" tetromino
       shape.SetAsBox(5.0f, 2.5f, b2Vec2{-2.5f,-2.5f}, 0);
       shape2.SetAsBox(5.0f, 2.5f, b2Vec2{2.5f, 2.5f}, 0);
-      color_ = ci::Color(247.0/255.0,22.0/255.0,22.0/255.0); // red
+      color_ = ci::Color(35.0/255.0,250.0/255.0,20.0/255.0); // green
       break;
     case 'Z': // "Z" Tetromino
       shape.SetAsBox(5.0f, 2.5f, b2Vec2{-2.5f,2.5f}, 0);
       shape2.SetAsBox(5.0f, 2.5f, b2Vec2{2.5f, -2.5f}, 0);
-      color_ = ci::Color(35.0/255.0,250.0/255.0,20.0/255.0); // green
+      color_ = ci::Color(247.0/255.0,22.0/255.0,22.0/255.0); // red
       break;
     case 'O': // "O" Tetromino
       shape.SetAsBox(5.0f, 5.0f);

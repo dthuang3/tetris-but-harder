@@ -77,6 +77,8 @@ char Game::GetRandomTetrimino() {
       return 'O';
     case 6:
       return 'T';
+    default:
+      return 'Z';
   }
 }
 
@@ -93,9 +95,9 @@ void Game::SetupTetrisBoundary() {
   
   rectangle.SetAsBox(25.0f, 0.1f, b2Vec2(0,0), 0); // bottom
   boundary_body->CreateFixture(&boundary_fixture);
-  rectangle.SetAsBox(0.1f, 50.0f, b2Vec2(-25.0f, 50.0f), 0); // left wall
+  rectangle.SetAsBox(0.1f, 70.0f, b2Vec2(-25.0f, 50.0f), 0); // left wall
   boundary_body->CreateFixture(&boundary_fixture);
-  rectangle.SetAsBox(0.1f, 50.0f, b2Vec2(25.0f, 50.0f), 0); // right wall
+  rectangle.SetAsBox(0.1f, 70.0f, b2Vec2(25.0f, 50.0f), 0); // right wall
   boundary_body->CreateFixture(&boundary_fixture);
 }
 
