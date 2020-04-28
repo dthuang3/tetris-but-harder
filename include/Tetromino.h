@@ -14,7 +14,7 @@ class Tetromino {
   const float x_margin = 60;
   const float y_margin = 40;
  public:
-  Tetromino(b2World* world, size_t type);
+  Tetromino(b2World* world, char type);
   b2Body* body_;
   void Draw();
  private:

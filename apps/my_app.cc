@@ -94,7 +94,22 @@ void MyApp::draw() {
 //  ci::gl::drawLine(ci::vec2{0,663}, ci::vec2{400,663});
 }
 
-void MyApp::keyDown(KeyEvent event) {}
+void MyApp::keyDown(KeyEvent event) {
+  switch(event.getCode()) {
+    case KeyEvent::KEY_LEFT:
+      game_->GetCurrentPiece()->body_->ApplyForceToCenter(b2Vec2{-10000.0f, 0.0f});
+      break;
+    case KeyEvent::KEY_RIGHT:
+      game_->GetCurrentPiece()->body_->ApplyForceToCenter(b2Vec2{10000.0f, 0.0f});
+      break;
+    case KeyEvent::KEY_z:
+      game_->GetCurrentPiece()->body_->ApplyTorque(-9000.0f);
+      break;
+    case KeyEvent::KEY_c:
+      game_->GetCurrentPiece()->body_->ApplyTorque(9000.0f);
+      break;
+  }
+}
 
 void MyApp::DrawTetrisMatrix() {
   cinder::gl::color(1, 1, 1);

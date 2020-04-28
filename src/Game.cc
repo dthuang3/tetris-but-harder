@@ -9,7 +9,7 @@ namespace tetris {
 Game::Game() {
   world_ = new b2World(gravity_);
   SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, 1);
+  current_piece_ = new tetris::Tetromino(world_, 'L');
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;
 }
@@ -32,9 +32,8 @@ void Game::Update() {
     return;
   }
   if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
-    size_t random_piece_type = GetRandomTetrimino();
+    char random_piece_type = GetRandomTetrimino();
     current_piece_ = new tetris::Tetromino(world_, random_piece_type);
-    current_piece_->body_->ApplyAngularImpulse(-90.0f);
     game_pieces_.push_back(current_piece_);
   }
   float recent = 200;
@@ -56,20 +55,24 @@ void Game::Draw() {
   }
 }
 
-size_t Game::GetRandomTetrimino() {
+char Game::GetRandomTetrimino() {
   std::mt19937 rng(random_device_());
-  std::uniform_int_distribution<int> uniform_int_distribution(0,4);
+  std::uniform_int_distribution<int> uniform_int_distribution(0,6);
   switch (uniform_int_distribution(rng)) {
     case 0:
-      return 1;
+      return 'I';
     case 1:
-      return 3;
+      return 'J';
     case 2:
-      return 4;
+      return 'L';
     case 3:
-      return 5;
+      return 'Z';
     case 4:
-      return 6;
+      return 'S';
+    case 5:
+      return 'O';
+    case 6:
+      return 'T';
   }
 }
 
@@ -94,5 +97,9 @@ void Game::SetupTetrisBoundary() {
 
 bool Game::IsToppedOut() {
   return is_topped_out_;
+}
+
+tetris::Tetromino* Game::GetCurrentPiece() {
+  return current_piece_;
 }
 }

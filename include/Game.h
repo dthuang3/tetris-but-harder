@@ -20,7 +20,7 @@ class Game {
   void Update();
   void Reset();
   b2World* world_;
-  tetris::Tetromino GetCurrentPiece();
+  tetris::Tetromino* GetCurrentPiece();
   bool IsToppedOut();
   void Draw();
  private:
@@ -31,7 +31,7 @@ class Game {
   
  private:
   void SetupTetrisBoundary();
-  size_t GetRandomTetrimino();
+  char GetRandomTetrimino();
   std::random_device random_device_;
 };
 
