@@ -134,9 +134,12 @@ void Game::Reset() {
   }
   is_topped_out_ = false;
   SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, 'L');
+  current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
   game_pieces_.push_back(current_piece_);
   score_ = 0;
+  should_hold_piece_ = false;
+  already_held_current_turn_ = false;
+  held_piece_type_ = 'H';
 }
 
 int32_t Game::GetScore() { 
@@ -145,6 +148,9 @@ int32_t Game::GetScore() {
 
 void Game::HoldCurrentPiece() {
   should_hold_piece_ = true;
-  
+}
+
+char Game::GetHeldType() {
+  return held_piece_type_;
 }
 }

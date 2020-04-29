@@ -29,9 +29,8 @@ class MyApp : public cinder::app::App {
   void mouseDown(cinder::app::MouseEvent) override;
  private:
   static void DrawTetrisMatrix();
+  static void DrawHeldSection(char type);
   tetris::Game* game_;
-  void PrintText(const std::string basicString, const cinder::Color t,
-                 const glm::ivec2 vec, const glm::vec2 vec1);
 };
 
 }  // namespace myapp

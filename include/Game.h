@@ -25,6 +25,7 @@ class Game {
   void Draw();
   int32_t GetScore();
   void HoldCurrentPiece();
+  char GetHeldType();
  private:
   tetris::Tetromino* current_piece_;
   std::vector<tetris::Tetromino*> game_pieces_;
