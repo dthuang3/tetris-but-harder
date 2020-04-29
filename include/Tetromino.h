@@ -17,8 +17,9 @@ class Tetromino {
   Tetromino(b2World* world, char type);
   b2Body* body_;
   void Draw();
+  char GetType();
  private:
-  size_t type_;
+  char type_;
   ci::Color color_;
 
 };

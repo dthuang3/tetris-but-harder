@@ -88,8 +88,10 @@ void Tetromino::Draw() {
     ci::gl::drawSolid(cinder_vertices);
     vertex_vector.clear();
   }
+}
 
-  
+char Tetromino::GetType() {
+  return type_;
 }
 
 

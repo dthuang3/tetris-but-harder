@@ -13,6 +13,8 @@ Game::Game() {
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;
   score_ = 0;
+  should_hold_piece_ = false;
+  held_piece_type_ = 'H';
 }
 
 void Game::Update() {
@@ -24,8 +26,8 @@ void Game::Update() {
 //    char letter = GetRandomTetrimino();
 //    current_piece_ = new tetris::Tetromino(world_, letter);
 //  }
+  char random_piece_type = GetRandomTetrimino();
   if (current_piece_ == nullptr) {
-    char random_piece_type = GetRandomTetrimino();
     current_piece_ = new tetris::Tetromino(world_, random_piece_type);
   }
   world_->Step(1.0f / 60.0f, 8,3);
@@ -37,11 +39,20 @@ void Game::Update() {
   if (is_topped_out_) {
     return;
   }
-  if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
-    char random_piece_type = GetRandomTetrimino();
+  if (should_hold_piece_) {
+    char temp = held_piece_type_;
+    held_piece_type_ = current_piece_->GetType();
+    game_pieces_.pop_back();
+    world_->DestroyBody(current_piece_->body_);
+    char new_piece_type = GetRandomTetrimino();
+    current_piece_ =
+        new tetris::Tetromino(world_, temp == 'H' ? new_piece_type : temp);
+    game_pieces_.push_back(current_piece_);
+  } else if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
     current_piece_ = new tetris::Tetromino(world_, random_piece_type);
     game_pieces_.push_back(current_piece_);
   }
+  should_hold_piece_ = false;
 //  float recent = 200;
 //  float speedNow = current_piece_->body_->GetLinearVelocity().Length();
 //  recent = 0.1 * speedNow + 0.9 * recent;
@@ -127,5 +138,9 @@ void Game::Reset() {
 
 int32_t Game::GetScore() { 
   return score_;
+}
+
+void Game::HoldCurrentPiece() {
+  should_hold_piece_ = true;
 }
 }

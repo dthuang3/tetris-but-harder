@@ -24,15 +24,19 @@ class Game {
   bool IsToppedOut();
   void Draw();
   int32_t GetScore();
+  void HoldCurrentPiece();
  private:
   tetris::Tetromino* current_piece_;
   std::vector<tetris::Tetromino*> game_pieces_;
   bool is_topped_out_;
   int32_t score_; 
+  char held_piece_type_;
+  bool should_hold_piece_;
  private:
   void SetupTetrisBoundary();
   char GetRandomTetrimino();
   std::random_device random_device_;
+  
 };
 
 }

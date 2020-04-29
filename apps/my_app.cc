@@ -107,6 +107,9 @@ void MyApp::keyDown(KeyEvent event) {
     case KeyEvent::KEY_c:
       game_->GetCurrentPiece()->body_->ApplyTorque(90000.0f);
       break;
+    case KeyEvent::KEY_RSHIFT:
+      game_->HoldCurrentPiece();
+      break;
   }
 }
 
