@@ -9,7 +9,8 @@ namespace tetris {
 Game::Game() {
   world_ = new b2World(gravity_);
   SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, tetris::TetrominoPieceType::L);
+  current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino()); 
+  next_piece_type_ = GetRandomTetrimino();
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;
   score_ = 0;
@@ -27,9 +28,8 @@ void Game::Update() {
 //    char letter = GetRandomTetrimino();
 //    current_piece_ = new tetris::Tetromino(world_, letter);
 //  }
-  tetris::TetrominoPieceType random_piece_type = GetRandomTetrimino();
   if (current_piece_ == nullptr) {
-    current_piece_ = new tetris::Tetromino(world_, random_piece_type);
+    current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
   }
   world_->Step(1.0f / 60.0f, 8,3);
   score_++;
@@ -45,15 +45,20 @@ void Game::Update() {
     held_piece_type_ = current_piece_->GetType();
     game_pieces_.pop_back();
     world_->DestroyBody(current_piece_->body_);
-    tetris::TetrominoPieceType new_piece_type = GetRandomTetrimino();
-    current_piece_ =
-        new tetris::Tetromino(world_, temp == tetris::TetrominoPieceType::Empty ? new_piece_type : temp);
+    if (temp == tetris::TetrominoPieceType::Empty) {
+      current_piece_ =
+          new tetris::Tetromino(world_, next_piece_type_);
+      next_piece_type_ = GetRandomTetrimino();
+    } else {
+      current_piece_ = new tetris::Tetromino(world_, temp);
+    }
     game_pieces_.push_back(current_piece_);
     already_held_current_turn_ = true;
   } else if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
-    current_piece_ = new tetris::Tetromino(world_, random_piece_type);
+    current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
     game_pieces_.push_back(current_piece_);
     already_held_current_turn_ = false;
+    next_piece_type_ = GetRandomTetrimino();
   }
   should_hold_piece_ = false;
 //  float recent = 200;
@@ -125,7 +130,6 @@ tetris::Tetromino* Game::GetCurrentPiece() {
 }
 
 void Game::Reset() {
-  game_pieces_.clear();
   b2Body* body_to_destroy = world_->GetBodyList();
   while (body_to_destroy) {
     b2Body* temp = body_to_destroy;
@@ -140,6 +144,7 @@ void Game::Reset() {
   should_hold_piece_ = false;
   already_held_current_turn_ = false;
   held_piece_type_ = tetris::TetrominoPieceType::Empty;
+  next_piece_type_ = GetRandomTetrimino();
 }
 
 int32_t Game::GetScore() { 
@@ -152,5 +157,9 @@ void Game::HoldCurrentPiece() {
 
 tetris::TetrominoPieceType Game::GetHeldType() {
   return held_piece_type_;
+}
+
+tetris::TetrominoPieceType Game::GetNextType() {
+  return next_piece_type_;
 }
 }

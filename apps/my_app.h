@@ -30,6 +30,7 @@ class MyApp : public cinder::app::App {
  private:
   static void DrawTetrisMatrix();
   static void DrawHeldSection(tetris::TetrominoPieceType type);
+  static void DrawNextSection(tetris::TetrominoPieceType type);
   tetris::Game* game_;
 };
 

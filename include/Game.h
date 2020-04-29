@@ -26,9 +26,11 @@ class Game {
   int32_t GetScore();
   void HoldCurrentPiece();
   tetris::TetrominoPieceType GetHeldType();
+  tetris::TetrominoPieceType GetNextType();
  private:
   tetris::Tetromino* current_piece_;
   std::vector<tetris::Tetromino*> game_pieces_;
+  tetris::TetrominoPieceType next_piece_type_;
   bool is_topped_out_;
   int32_t score_; 
   tetris::TetrominoPieceType held_piece_type_;
