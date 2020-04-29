@@ -32,6 +32,7 @@ class Game {
   int32_t score_; 
   char held_piece_type_;
   bool should_hold_piece_;
+  bool already_held_current_turn_;
  private:
   void SetupTetrisBoundary();
   char GetRandomTetrimino();

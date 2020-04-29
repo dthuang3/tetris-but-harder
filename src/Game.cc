@@ -15,6 +15,7 @@ Game::Game() {
   score_ = 0;
   should_hold_piece_ = false;
   held_piece_type_ = 'H';
+  already_held_current_turn_ = false;
 }
 
 void Game::Update() {
@@ -39,7 +40,7 @@ void Game::Update() {
   if (is_topped_out_) {
     return;
   }
-  if (should_hold_piece_) {
+  if (should_hold_piece_ && !already_held_current_turn_) {
     char temp = held_piece_type_;
     held_piece_type_ = current_piece_->GetType();
     game_pieces_.pop_back();
@@ -48,9 +49,11 @@ void Game::Update() {
     current_piece_ =
         new tetris::Tetromino(world_, temp == 'H' ? new_piece_type : temp);
     game_pieces_.push_back(current_piece_);
+    already_held_current_turn_ = true;
   } else if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
     current_piece_ = new tetris::Tetromino(world_, random_piece_type);
     game_pieces_.push_back(current_piece_);
+    already_held_current_turn_ = false;
   }
   should_hold_piece_ = false;
 //  float recent = 200;
@@ -142,5 +145,6 @@ int32_t Game::GetScore() {
 
 void Game::HoldCurrentPiece() {
   should_hold_piece_ = true;
+  
 }
 }
