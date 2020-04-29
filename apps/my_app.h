@@ -10,8 +10,13 @@
 #include <cinder/gl/gl.h>
 #include <../include/mylibrary/example.h>
 #include <Game.h>
+#include <Box2D/Dynamics/b2Body.h>
+#include <cinder/app/App.h>
+#include <cinder/Log.h>
+#include <Box2dUtils.h>
 namespace myapp {
 
+const char kNormalFont[] = "Arial";
 const size_t kTileSize = 35;
 
 class MyApp : public cinder::app::App {
@@ -23,8 +28,10 @@ class MyApp : public cinder::app::App {
   void keyDown(cinder::app::KeyEvent) override;
   void mouseDown(cinder::app::MouseEvent) override;
  private:
-  void DrawTetrisMatrix();
+  static void DrawTetrisMatrix();
   tetris::Game* game_;
+  void PrintText(const std::string basicString, const cinder::Color t,
+                 const glm::ivec2 vec, const glm::vec2 vec1);
 };
 
 }  // namespace myapp

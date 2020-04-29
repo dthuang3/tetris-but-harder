@@ -12,6 +12,7 @@ Game::Game() {
   current_piece_ = new tetris::Tetromino(world_, 'L');
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;
+  score_ = 0;
 }
 
 void Game::Update() {
@@ -28,6 +29,7 @@ void Game::Update() {
     current_piece_ = new tetris::Tetromino(world_, random_piece_type);
   }
   world_->Step(1.0f / 60.0f, 8,3);
+  score_++;
   bool past_threshold = current_piece_->body_->GetPosition().y < kTopOutHeight;
   if (!past_threshold && current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
     is_topped_out_ = true;
@@ -40,17 +42,16 @@ void Game::Update() {
     current_piece_ = new tetris::Tetromino(world_, random_piece_type);
     game_pieces_.push_back(current_piece_);
   }
-  float recent = 200;
-  float speedNow = current_piece_->body_->GetLinearVelocity().Length();
-  recent = 0.1 * speedNow + 0.9 * recent;
-  b2Vec2 s;
-  float a;
-  world_->Step(1.0f/60.0f, 8, 3);
-  s = current_piece_->body_->GetPosition();
-  a = current_piece_->body_->GetAngularVelocity();
-  speedNow = current_piece_->body_->GetLinearVelocity().Length();
-  recent = 0.1 * speedNow + 0.9 * recent;
-  count++;
+//  float recent = 200;
+//  float speedNow = current_piece_->body_->GetLinearVelocity().Length();
+//  recent = 0.1 * speedNow + 0.9 * recent;
+//  b2Vec2 s;
+//  float a;
+//  world_->Step(1.0f/60.0f, 8, 3);
+//  s = current_piece_->body_->GetPosition();
+//  a = current_piece_->body_->GetAngularVelocity();
+//  speedNow = current_piece_->body_->GetLinearVelocity().Length();
+//  recent = 0.1 * speedNow + 0.9 * recent;
 }
 
 void Game::Draw() {
@@ -121,5 +122,10 @@ void Game::Reset() {
   SetupTetrisBoundary();
   current_piece_ = new tetris::Tetromino(world_, 'L');
   game_pieces_.push_back(current_piece_);
+  score_ = 0;
+}
+
+int32_t Game::GetScore() { 
+  return score_;
 }
 }

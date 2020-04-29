@@ -20,9 +20,9 @@ Tetromino::Tetromino(b2World* world, char type) {
   b2FixtureDef fixture_def;
   b2FixtureDef fixture_def2;
   fixture_def.shape = &shape;
-  fixture_def.density = 1.0f;
+  fixture_def.density = 3.0f;
   fixture_def2.shape = &shape2;
-  fixture_def.density = 1.0f;
+  fixture_def.density = 3.0f;
   type_ = type;
   switch (type) {
     case 'S': // "S" tetromino

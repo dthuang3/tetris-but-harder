@@ -2,11 +2,6 @@
 
 #include "my_app.h"
 
-#include <Box2D/Dynamics/b2Body.h>
-#include <cinder/app/App.h>
-#include <cinder/Log.h>
-#include <Box2dUtils.h>
-#include <Game.h>
 namespace myapp {
 
 using cinder::app::KeyEvent;
@@ -75,7 +70,7 @@ void MyApp::update() {
 }
 
 void MyApp::draw() {
-  ci::gl::clear();
+  ci::gl::clear(ci::Color{125.0f/255.0f, 5.0f/255.0f, 119.0f/255.0f}, true);
 //  cinder::gl::color(0,1,0);
 //  for (float i = 0; i < 10; i++) {
 //    cinder::gl::drawSolidRect(cinder::Rectf{60 + (35 * i), 40, 35 + 60 + (35 * i),75});
@@ -86,6 +81,13 @@ void MyApp::draw() {
 //  }
   DrawTetrisMatrix();
   game_->Draw();
+  const cinder::ivec2 size = {300,200};
+  const cinder::vec2 location = {600.0f, 200.0f};
+  const cinder::Color color = cinder::Color{1,1,1};
+  const std::string score = std::to_string(game_->GetScore());
+  ci::gl::drawString("Score:", ci::vec2{580.0f, 150.0f}, color, ci::Font("Arial", 40));
+  ci::gl::drawString(score, ci::vec2{580.0f, 200.0f}, color, ci::Font{"Arial", 40});
+  
 //  ci::gl::drawLine(ci::vec2{0,733},ci::vec2{400,733});
 //  ci::gl::drawLine(ci::vec2{0,698}, ci::vec2{400,698});
 //  ci::gl::drawLine(ci::vec2{0,663}, ci::vec2{400,663});
@@ -100,10 +102,10 @@ void MyApp::keyDown(KeyEvent event) {
       game_->GetCurrentPiece()->body_->ApplyForceToCenter(b2Vec2{10000.0f, 0.0f});
       break;
     case KeyEvent::KEY_z:
-      game_->GetCurrentPiece()->body_->ApplyTorque(-9000.0f);
+      game_->GetCurrentPiece()->body_->ApplyTorque(-90000.0f);
       break;
     case KeyEvent::KEY_c:
-      game_->GetCurrentPiece()->body_->ApplyTorque(9000.0f);
+      game_->GetCurrentPiece()->body_->ApplyTorque(90000.0f);
       break;
   }
 }
@@ -125,4 +127,5 @@ void MyApp::DrawTetrisMatrix() {
       is_dash_blank = !is_dash_blank;
   }
 }
+
 }  // namespace myapp

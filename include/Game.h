@@ -13,7 +13,7 @@
 namespace tetris {
 
 class Game {
-  b2Vec2 gravity_{0.0f, -7.5f};
+  b2Vec2 gravity_{0.0f, -10.0f};
   const float kTopOutHeight = 90.0f; 
  public:
   Game(); 
@@ -23,12 +23,12 @@ class Game {
   tetris::Tetromino* GetCurrentPiece();
   bool IsToppedOut();
   void Draw();
+  int32_t GetScore();
  private:
   tetris::Tetromino* current_piece_;
   std::vector<tetris::Tetromino*> game_pieces_;
   bool is_topped_out_;
-  size_t count = 0;
-  
+  int32_t score_; 
  private:
   void SetupTetrisBoundary();
   char GetRandomTetrimino();
