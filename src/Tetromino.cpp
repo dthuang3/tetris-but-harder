@@ -10,7 +10,7 @@
 
 namespace tetris {
 
-Tetromino::Tetromino(b2World* world, char type) {
+Tetromino::Tetromino(b2World* world, TetrominoPieceType type) {
   b2BodyDef tetrimino_def;
   tetrimino_def.type = b2_dynamicBody;
   tetrimino_def.position.Set(0.0f, 100.0f);
@@ -24,36 +24,36 @@ Tetromino::Tetromino(b2World* world, char type) {
   fixture_def2.shape = &shape2;
   fixture_def.density = 3.0f;
   type_ = type;
-  switch (type) {
-    case 'S': // "S" tetromino
+  switch (type_) {
+    case S: // "S" tetromino
       shape.SetAsBox(5.0f, 2.5f, b2Vec2{-2.5f,-2.5f}, 0);
       shape2.SetAsBox(5.0f, 2.5f, b2Vec2{2.5f, 2.5f}, 0);
       color_ = ci::Color(35.0/255.0,250.0/255.0,20.0/255.0); // green
       break;
-    case 'Z': // "Z" Tetromino
+    case Z: // "Z" Tetromino
       shape.SetAsBox(5.0f, 2.5f, b2Vec2{-2.5f,2.5f}, 0);
       shape2.SetAsBox(5.0f, 2.5f, b2Vec2{2.5f, -2.5f}, 0);
       color_ = ci::Color(247.0/255.0,22.0/255.0,22.0/255.0); // red
       break;
-    case 'O': // "O" Tetromino
+    case O: // "O" Tetromino
       shape.SetAsBox(5.0f, 5.0f);
       color_ = ci::Color(250.0/255.0,223.0/255.0,20.0/255.0); // yellow
       break;
-    case 'I': // "I" Tetromino
+    case I: // "I" Tetromino
       shape.SetAsBox(10.0f, 2.5f);
       color_ = ci::Color(12.0/255.0,221.0/255.0,240.0/255.0); // sky blue
       break;
-    case 'T': // "T" Tetromino
+    case T: // "T" Tetromino
       shape.SetAsBox(7.5f, 2.5f, b2Vec2{0.0f,2.5f}, 0);
       shape2.SetAsBox(2.5f, 2.5f, b2Vec2{0, -2.5f}, 0);
       color_ = ci::Color(192.0/255.0,20.0/255.0,250.0/255.0); // purple
       break;
-    case 'J': // "J" Tetromino
+    case J: // "J" Tetromino
       shape.SetAsBox(2.5f, 5.0f, b2Vec2{0.0f, 5.0f}, 0);
       shape2.SetAsBox(5.0f, 2.5f, b2Vec2{-2.5f, -2.5f},0);
       color_ = ci::Color(11.0/255.0, 65.0/255.0, 227.0/255.0); // dark blue
       break;
-    case 'L': // "L" Tetromino
+    case L: // "L" Tetromino
       shape.SetAsBox(2.5f, 5.0f, b2Vec2{0.0f, 5.0f}, 0);
       shape2.SetAsBox(5.0f, 2.5f, b2Vec2{2.5f, -2.5f},0);
       color_ = ci::Color(240.0/255.0,152.0/255.0,12.0/255.0); // orange
@@ -90,7 +90,7 @@ void Tetromino::Draw() {
   }
 }
 
-char Tetromino::GetType() {
+tetris::TetrominoPieceType Tetromino::GetType() {
   return type_;
 }
 

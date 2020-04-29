@@ -8,18 +8,22 @@
 #include <Box2D/Box2D.h>
 namespace tetris {
 
+enum TetrominoPieceType {
+  I, J, L, S, Z, T, O, Empty
+};
+
 class Tetromino {
   const size_t tile_size_ = 35;
   const float screen_scaling_ = 3.5;
   const float x_margin = 60;
   const float y_margin = 40;
  public:
-  Tetromino(b2World* world, char type);
+  Tetromino(b2World* world, TetrominoPieceType type);
   b2Body* body_;
   void Draw();
-  char GetType();
+  tetris::TetrominoPieceType GetType();
  private:
-  char type_;
+  TetrominoPieceType type_;
   ci::Color color_;
 
 };

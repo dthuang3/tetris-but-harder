@@ -9,12 +9,12 @@ namespace tetris {
 Game::Game() {
   world_ = new b2World(gravity_);
   SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, 'L');
+  current_piece_ = new tetris::Tetromino(world_, tetris::TetrominoPieceType::L);
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;
   score_ = 0;
   should_hold_piece_ = false;
-  held_piece_type_ = 'H';
+  held_piece_type_ = tetris::TetrominoPieceType::Empty;
   already_held_current_turn_ = false;
 }
 
@@ -27,7 +27,7 @@ void Game::Update() {
 //    char letter = GetRandomTetrimino();
 //    current_piece_ = new tetris::Tetromino(world_, letter);
 //  }
-  char random_piece_type = GetRandomTetrimino();
+  tetris::TetrominoPieceType random_piece_type = GetRandomTetrimino();
   if (current_piece_ == nullptr) {
     current_piece_ = new tetris::Tetromino(world_, random_piece_type);
   }
@@ -41,13 +41,13 @@ void Game::Update() {
     return;
   }
   if (should_hold_piece_ && !already_held_current_turn_) {
-    char temp = held_piece_type_;
+    tetris::TetrominoPieceType temp = held_piece_type_;
     held_piece_type_ = current_piece_->GetType();
     game_pieces_.pop_back();
     world_->DestroyBody(current_piece_->body_);
-    char new_piece_type = GetRandomTetrimino();
+    tetris::TetrominoPieceType new_piece_type = GetRandomTetrimino();
     current_piece_ =
-        new tetris::Tetromino(world_, temp == 'H' ? new_piece_type : temp);
+        new tetris::Tetromino(world_, temp == tetris::TetrominoPieceType::Empty ? new_piece_type : temp);
     game_pieces_.push_back(current_piece_);
     already_held_current_turn_ = true;
   } else if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
@@ -74,26 +74,26 @@ void Game::Draw() {
   }
 }
 
-char Game::GetRandomTetrimino() {
+tetris::TetrominoPieceType Game::GetRandomTetrimino() {
   std::mt19937 rng(random_device_());
   std::uniform_int_distribution<int> uniform_int_distribution(0,6);
   switch (uniform_int_distribution(rng)) {
     case 0:
-      return 'I';
+      return I;
     case 1:
-      return 'J';
+      return J;
     case 2:
-      return 'L';
+      return L;
     case 3:
-      return 'Z';
+      return Z;
     case 4:
-      return 'S';
+      return S;
     case 5:
-      return 'O';
+      return O;
     case 6:
-      return 'T';
+      return T;
     default:
-      return 'Z';
+      return Z;
   }
 }
 
@@ -139,7 +139,7 @@ void Game::Reset() {
   score_ = 0;
   should_hold_piece_ = false;
   already_held_current_turn_ = false;
-  held_piece_type_ = 'H';
+  held_piece_type_ = tetris::TetrominoPieceType::Empty;
 }
 
 int32_t Game::GetScore() { 
@@ -150,7 +150,7 @@ void Game::HoldCurrentPiece() {
   should_hold_piece_ = true;
 }
 
-char Game::GetHeldType() {
+tetris::TetrominoPieceType Game::GetHeldType() {
   return held_piece_type_;
 }
 }

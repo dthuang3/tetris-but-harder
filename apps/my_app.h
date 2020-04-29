@@ -29,7 +29,7 @@ class MyApp : public cinder::app::App {
   void mouseDown(cinder::app::MouseEvent) override;
  private:
   static void DrawTetrisMatrix();
-  static void DrawHeldSection(char type);
+  static void DrawHeldSection(tetris::TetrominoPieceType type);
   tetris::Game* game_;
 };
 

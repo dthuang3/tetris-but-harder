@@ -133,45 +133,45 @@ void MyApp::DrawTetrisMatrix() {
   }
 }
 
-void MyApp::DrawHeldSection(char type) {
+void MyApp::DrawHeldSection(tetris::TetrominoPieceType type) {
   cinder::vec2 location{620.0f, 450.0f};
   ci::Color color;
   switch (type) {
-    case 'S': // "S" tetromino
+    case tetris::TetrominoPieceType::S: // "S" tetromino
       color = ci::Color(35.0f/255.0f,250.0f/255.0f,20.0f/255.0f); // green
       ci::gl::color(color);
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 17.5f, location.y - 35.0f, location.x + 52.5f, location.y});
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 52.5f, location.y, location.x + 17.5f, location.y + 35.0f});
       break;
-    case 'Z': // "Z" Tetromino
+    case tetris::TetrominoPieceType::Z: // "Z" Tetromino
       color = ci::Color(247.0f/255.0f,22.0f/255.0f,22.0f/255.0f); // red
       ci::gl::color(color);
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 52.5f, location.y - 35.0f, location.x + 17.5f, location.y});
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 17.5f, location.y, location.x + 52.5f, location.y + 35.0f});
       break;
-    case 'O': // "O" Tetromino
+    case tetris::TetrominoPieceType::O: // "O" Tetromino
       color = ci::Color(250.0f/255.0f,223.0f/255.0f,20.0f/255.0f); // yellow
       ci::gl::color(color);
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 35.0f, location.y - 35.0f, location.x + 35.0f, location.y + 35.0f});
       break;
-    case 'I': // "I" Tetromino
+    case tetris::TetrominoPieceType::I: // "I" Tetromino
       color = ci::Color(12.0f/255.0f,221.0f/255.0f,240.0f/255.0f); // sky blue
       ci::gl::color(color);
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 17.5f, location.y - 70.0f, location.x + 17.5f, location.y + 70.0f});
       break;
-    case 'T': // "T" Tetromino
+    case tetris::TetrominoPieceType::T: // "T" Tetromino
       color = ci::Color(192.0f/255.0f,20.0f/255.0f,250.0f/255.0f); // purple
       ci::gl::color(color);
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 52.5f, location.y - 35.0f, location.x + 52.5f, location.y});
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 17.5f, location.y, location.x + 17.5f, location.y + 35.0f});
       break;
-    case 'J': // "J" Tetromino
+    case tetris::TetrominoPieceType::J: // "J" Tetromino
       color = ci::Color(11.0f/255.0f, 65.0f/255.0f, 227.0f/255.0f); // dark blue
       ci::gl::color(color);
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 17.5f, location.y - 70.0f, location.x + 17.5f, location.y});
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 52.5f, location.y, location.x + 17.5f, location.y + 35.0f});
       break;
-    case 'L': // "L" Tetromino
+    case tetris::TetrominoPieceType::L:// "L" Tetromino
       color = ci::Color(240.0f/255.0f,152.0f/255.0f,12.0f/255.0f); // orange
       ci::gl::color(color);
       ci::gl::drawSolidRect(cinder::Rectf{location.x - 17.5f, location.y - 70.0f, location.x + 17.5f, location.y});
