@@ -40,11 +40,25 @@
 * Added colors to each tetromino and make densities of each one equal
 * Fix scalars for the physics world to cinder openGL screen
 * Still need to:
-    * [ ] Add scoring logic (timer)
-    * [ ] Add text to UI / make it prettier
-    * [ ] Cap physics box to prevent pieces from flying out
+    * [x] Add scoring logic (timer)
+    * [x] Add text to UI / make it prettier
+    * [x] Cap physics box to prevent pieces from flying out
     * [ ] Unit testing
 * Extra ideas:
     * Pause feature/menu?
     * Maybe add a background?
     
+### 4/28/2020
+* Adjusted piece movement to be less rapid / easier to control (less torque, decreased acceleration)
+* Reset game on mouse click
+* Added scoring and displayed onto side bar
+* Added hold piece feature and displayed on side bar
+* Changed background color (may go back to black)
+* Still need to:
+    * [ ] Unit testing
+    * [ ] Display next piece 
+    * [ ] Clean up magic numbers / use consts
+    * [ ] Documentation / README.md
+    * [ ] Game Over Screen to see score.
+* Extra ideas (continued):
+    * Pause feature/menu
