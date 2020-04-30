@@ -17,8 +17,8 @@ class Game {
   const float kTopOutHeight = 90.0f; 
  public:
   Game(); 
+  ~Game();
   void Update();
-  void Reset();
   b2World* world_;
   tetris::Tetromino* GetCurrentPiece();
   bool IsToppedOut();

@@ -118,7 +118,8 @@ void MyApp::keyDown(KeyEvent event) {
 }
 
 void MyApp::mouseDown(cinder::app::MouseEvent event) {
-    game_->Reset();
+  delete game_;
+  game_ = new tetris::Game();
 }
 
 void MyApp::DrawTetrisMatrix() {

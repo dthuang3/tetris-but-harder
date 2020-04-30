@@ -18,6 +18,13 @@ Game::Game() {
   held_piece_type_ = tetris::TetrominoPieceType::Empty;
   already_held_current_turn_ = false;
 }
+Game::~Game() {
+  delete world_;
+  for (auto& piece : game_pieces_) {
+    delete piece;
+  }
+  game_pieces_.clear();
+}
 
 void Game::Update() {
 //  if (is_topped_out_) {
@@ -127,24 +134,6 @@ bool Game::IsToppedOut() {
 
 tetris::Tetromino* Game::GetCurrentPiece() {
   return current_piece_;
-}
-
-void Game::Reset() {
-  b2Body* body_to_destroy = world_->GetBodyList();
-  while (body_to_destroy) {
-    b2Body* temp = body_to_destroy;
-    body_to_destroy = body_to_destroy->GetNext();
-    world_->DestroyBody(temp);
-  }
-  is_topped_out_ = false;
-  SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
-  game_pieces_.push_back(current_piece_);
-  score_ = 0;
-  should_hold_piece_ = false;
-  already_held_current_turn_ = false;
-  held_piece_type_ = tetris::TetrominoPieceType::Empty;
-  next_piece_type_ = GetRandomTetrimino();
 }
 
 int32_t Game::GetScore() { 
