@@ -9,7 +9,7 @@ namespace tetris {
 Game::Game() {
   world_ = new b2World(gravity_);
   SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino()); 
+  current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
   next_piece_type_ = GetRandomTetrimino();
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;

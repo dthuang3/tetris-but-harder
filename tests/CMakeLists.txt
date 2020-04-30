@@ -16,6 +16,8 @@ ci_make_app(
         BLOCKS
 )
 
+enable_testing()
+
 target_compile_features(test PRIVATE cxx_std_14)
 
 # Cross-platform compiler lints
