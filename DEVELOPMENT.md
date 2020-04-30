@@ -55,10 +55,25 @@
 * Added hold piece feature and displayed on side bar
 * Changed background color (may go back to black)
 * Still need to:
-    * [ ] Unit testing
-    * [ ] Display next piece 
+    * [x] Unit testing
+    * [x] Display next piece 
     * [ ] Clean up magic numbers / use consts
     * [ ] Documentation / README.md
     * [ ] Game Over Screen to see score.
 * Extra ideas (continued):
     * Pause feature/menu
+    
+### 4/29/20
+* Display the next piece on side bar
+* Replaced the "type" parameter for each tetromino with the TetrominoPieceType enum instead of using chars
+* Added unit tests for Game class
+* Decided against having clear line function because it is hard to get infinite precision in Box2D to measure a cleared
+line and even harder for user to even make a row
+* Created a new game on mouse click rather than resetting game, logically, because it is "new" game and fixes the memory leak error due to no delete at end of game
+* Still need to:
+    *[ ] Clean up magic numbers / use consts / fix spacing and comments
+    *[ ] Documentation / README.md
+    *[ ] Game Over Screen to see score
+* Extra ideas (continued):
+    * [ ] Pause feature (menu if time)
+        * menu will have resume, new game, quit
