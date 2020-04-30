@@ -86,7 +86,7 @@ void MyApp::draw() {
   DrawTetrisMatrix();
   ci::gl::drawString("Hold", ci::vec2{580.0f, 300.0f}, color, ci::Font{kNormalFont, 40});
   DrawHeldSection(game_->GetHeldType());
-  ci::gl::drawString("Next", ci::vec2{580.0f, 600.0f}, color, ci::Font(kNormalFont, 40));
+  ci::gl::drawString("Next", ci::vec2{580.0f, 500.0f}, color, ci::Font(kNormalFont, 40));
   DrawNextSection(game_->GetNextType());
   game_->Draw();
   ci::gl::drawString("Score:", ci::vec2{580.0f, 150.0f}, color, ci::Font("Arial", 40));
@@ -137,7 +137,7 @@ void MyApp::DrawTetrisMatrix() {
 }
 
 void MyApp::DrawNextSection (tetris::TetrominoPieceType type) {
-  cinder::vec2 location{620.0f, 700.0f};
+  cinder::vec2 location{620.0f, 630.0f};
   ci::Color color;
   switch (type) {
     case tetris::TetrominoPieceType::S:  // "S" tetromino
@@ -215,7 +215,7 @@ void MyApp::DrawNextSection (tetris::TetrominoPieceType type) {
 }
 
 void MyApp::DrawHeldSection(tetris::TetrominoPieceType type) {
-  cinder::vec2 location{620.0f, 450.0f};
+  cinder::vec2 location{620.0f, 420.0f};
   ci::Color color;
   switch (type) {
     case tetris::TetrominoPieceType::S: // "S" tetromino

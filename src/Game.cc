@@ -62,7 +62,7 @@ void Game::Update() {
     game_pieces_.push_back(current_piece_);
     already_held_current_turn_ = true;
   } else if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
-    current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
+    current_piece_ = new tetris::Tetromino(world_, next_piece_type_); 
     game_pieces_.push_back(current_piece_);
     already_held_current_turn_ = false;
     next_piece_type_ = GetRandomTetrimino();
