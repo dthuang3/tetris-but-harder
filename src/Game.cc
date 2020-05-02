@@ -9,7 +9,7 @@ namespace tetris {
 Game::Game() {
   world_ = new b2World(gravity_);
   SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
+  current_piece_ = new tetris::Tetromino(world_, tetris::TetrominoPieceType::S);
   next_piece_type_ = GetRandomTetrimino();
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;
@@ -36,7 +36,8 @@ void Game::Update() {
 //    current_piece_ = new tetris::Tetromino(world_, letter);
 //  }
   if (current_piece_ == nullptr) {
-    current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
+//    current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
+    current_piece_ = new tetris::Tetromino(world_, tetris::TetrominoPieceType::S);
   }
   world_->Step(1.0f / 60.0f, 8,3);
   score_++;
