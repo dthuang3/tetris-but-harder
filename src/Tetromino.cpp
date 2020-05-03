@@ -15,19 +15,19 @@ Tetromino::Tetromino(b2World* world, TetrominoPieceType type) {
   body_ = world->CreateBody(&tetrimino_def);
   b2PolygonShape shape;
   b2PolygonShape shape2;
+  b2PolygonShape shape3;
+  b2PolygonShape shape4;
   b2FixtureDef fixture_def;
   b2FixtureDef fixture_def2;
-  fixture_def.shape = &shape;
-  fixture_def.density = 1.0f;
-  fixture_def2.shape = &shape2;
-  fixture_def2.density = 1.0f;
-  b2PolygonShape shape3;
   b2FixtureDef def3;
-  b2PolygonShape shape4;
   b2FixtureDef def4;
+  fixture_def.shape = &shape;
+  fixture_def2.shape = &shape2;
   def3.shape = &shape3;
-  def3.density = 1.0f;
   def4.shape = &shape4;
+  fixture_def.density = 1.0f;
+  fixture_def2.density = 1.0f;
+  def3.density = 1.0f;
   def4.density = 1.0f;
   type_ = type;
   switch (type_) {
