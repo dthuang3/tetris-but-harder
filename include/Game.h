@@ -22,12 +22,18 @@ class Game {
   void Update();
   b2World* world_;
   tetris::Tetromino* GetCurrentPiece();
+  void HoldCurrentPiece();
   bool IsToppedOut();
   void Draw();
   int32_t GetScore();
-  void HoldCurrentPiece();
   tetris::TetrominoPieceType GetHeldType();
   tetris::TetrominoPieceType GetNextType();
+ private:
+  void SetupTetrisBoundary();
+  tetris::TetrominoPieceType GetRandomTetrimino();
+  void HoldPiece();
+  bool HasFullLine();
+  void ClearLine();
  private:
   tetris::Tetromino* current_piece_;
   std::vector<tetris::Tetromino*> game_pieces_;
@@ -37,14 +43,7 @@ class Game {
   tetris::TetrominoPieceType held_piece_type_;
   bool should_hold_piece_;
   bool already_held_current_turn_;
- private:
-  void SetupTetrisBoundary();
-  tetris::TetrominoPieceType GetRandomTetrimino();
-  void HoldPiece();
-  bool HasFullLine();
-  void ClearLine();
   std::random_device random_device_;
-  
 };
 
 }
