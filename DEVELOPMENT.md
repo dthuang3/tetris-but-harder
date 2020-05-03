@@ -84,5 +84,6 @@ line and even harder for user to even make a row~~
 * Separate the tetrominos into 4 squares instead of 2 rectangles to allow them to be deleted properly when clearing lines
 * Still need to: 
     *[ ] Clean up magic numbers / use consts / fix spacing and comments
+    *[ ] Improve modularity / function usage
     *[ ] Documentation / README.md
     *[ ] Pause ability (not necessarily a visible menu)
