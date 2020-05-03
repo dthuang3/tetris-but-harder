@@ -9,7 +9,7 @@ namespace tetris {
 Game::Game() {
   world_ = new b2World(gravity_);
   SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, tetris::TetrominoPieceType::O);
+  current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
   next_piece_type_ = GetRandomTetrimino();
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;
@@ -37,7 +37,7 @@ void Game::Update() {
 //  }
   if (current_piece_ == nullptr) {
 //    current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
-    current_piece_ = new tetris::Tetromino(world_, tetris::TetrominoPieceType::O);
+    current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
   }
   world_->Step(1.0f / 60.0f, 8,3);
   score_++;
@@ -127,27 +127,26 @@ void Game::Draw() {
 }
 
 tetris::TetrominoPieceType Game::GetRandomTetrimino() {
-//  std::mt19937 rng(random_device_());
-//  std::uniform_int_distribution<int> uniform_int_distribution(0,6);
-//  switch (uniform_int_distribution(rng)) {
-//    case 0:
-//      return I;
-//    case 1:
-//      return J;
-//    case 2:
-//      return L;
-//    case 3:
-//      return Z;
-//    case 4:
-//      return S;
-//    case 5:
-//      return O;
-//    case 6:
-//      return T;
-//    default:
-//      return Z;
-//  }
-  return O;
+  std::mt19937 rng(random_device_());
+  std::uniform_int_distribution<int> uniform_int_distribution(0,6);
+  switch (uniform_int_distribution(rng)) {
+    case 0:
+      return I;
+    case 1:
+      return J;
+    case 2:
+      return L;
+    case 3:
+      return Z;
+    case 4:
+      return S;
+    case 5:
+      return O;
+    case 6:
+      return T;
+    default:
+      return Z;
+  }
 }
 
 void Game::SetupTetrisBoundary() {
