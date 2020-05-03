@@ -98,6 +98,8 @@ void Game::SetupTetrisBoundary() {
   boundary_body->CreateFixture(&boundary_fixture);
   rectangle.SetAsBox(0.1f, 70.0f, b2Vec2(25.0f, 50.0f), 0); // right wall
   boundary_body->CreateFixture(&boundary_fixture);
+  rectangle.SetAsBox(25.0f, 0.1f, b2Vec2(0,120.0f), 0); // top
+  boundary_body->CreateFixture(&boundary_fixture);
 }
 
 bool Game::IsToppedOut() {
