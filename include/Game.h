@@ -13,8 +13,9 @@
 namespace tetris {
 
 class Game {
-  const b2Vec2 gravity_ = {0.0f, -10.0f};
+  const b2Vec2 kGravity_ = {0.0f, -10.0f};
   const float kTopOutHeight = 90.0f; 
+  const size_t kFixturesToClearRow = 10;
  public:
   Game(); 
   ~Game();

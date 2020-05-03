@@ -7,7 +7,7 @@
 namespace tetris {
 
 Game::Game() {
-  world_ = new b2World(gravity_);
+  world_ = new b2World(kGravity_);
   SetupTetrisBoundary();
   current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
   next_piece_type_ = GetRandomTetrimino();
@@ -143,7 +143,9 @@ void Game::HoldPiece() {
 }
 
 bool Game::HasFullLine() {
+  const size_t all_vertices = 4;
   size_t count = 0;
+  const float line_threshold = 5.25f;
   // iterates through to check if first line is full 
   for (auto& piece : game_pieces_) {
     for (b2Fixture* fixture = piece->body_->GetFixtureList(); fixture; fixture = fixture->GetNext()) {
@@ -152,19 +154,21 @@ bool Game::HasFullLine() {
       for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
         b2Vec2 local_vertex = polygon_shape_ptr->GetVertex(i);
         b2Vec2 world_vertex = piece->body_->GetWorldPoint(local_vertex);
-        if (world_vertex.y <= 5.25f) {
+        if (world_vertex.y <= line_threshold) {
           v++;
         }
-        if (v == 4) {
+        if (v == all_vertices) {
           count++;
         }
       }
     }
   }
-  return count == 10;
+  return count == kFixturesToClearRow;
 }
 
 void Game::ClearLine() {
+  const float line_threshold = 5.25f;
+  const size_t all_vertices = 4;
   // Not a map because there are repeated body references
   std::vector<std::pair<b2Body*, b2Fixture*>> fixtures_to_remove;
   // iterate through pieces to know which ones to delete
@@ -175,10 +179,10 @@ void Game::ClearLine() {
       for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
         b2Vec2 local_vertex = polygon_shape_ptr->GetVertex(i);
         b2Vec2 world_vertex = piece->body_->GetWorldPoint(local_vertex);
-        if (world_vertex.y <= 5.25f) {
+        if (world_vertex.y <= line_threshold) {
           v++;
         }
-        if (v == 4) {
+        if (v == all_vertices) {
           fixtures_to_remove.emplace_back(piece->body_, fixture);
         }
       }
