@@ -20,17 +20,17 @@ Tetromino::Tetromino(b2World* world, TetrominoPieceType type) {
   b2FixtureDef fixture_def;
   b2FixtureDef fixture_def2;
   fixture_def.shape = &shape;
-  fixture_def.density = 3.0f;
+  fixture_def.density = 1.0f;
   fixture_def2.shape = &shape2;
-  fixture_def2.density = 3.0f;
+  fixture_def2.density = 1.0f;
   b2PolygonShape shape3;
   b2FixtureDef def3;
   b2PolygonShape shape4;
   b2FixtureDef def4;
   def3.shape = &shape3;
-  def3.density = 3.0f;
+  def3.density = 1.0f;
   def4.shape = &shape4;
-  def4.density = 3.0f;
+  def4.density = 1.0f;
   type_ = type;
   switch (type_) {
     case S: // "S" tetromino
@@ -78,7 +78,7 @@ Tetromino::Tetromino(b2World* world, TetrominoPieceType type) {
 //      shape.SetAsBox(2.5f, 5.0f, b2Vec2{0.0f, 5.0f}, 0);
 //      shape2.SetAsBox(5.0f, 2.5f, b2Vec2{-2.5f, -2.5f},0);
       shape.SetAsBox(2.5f, 2.5f, b2Vec2{0.0f, 2.5f}, 0);
-      shape2.SetAsBox(2.5f, 2.5f, b2Vec2{0.0f, 5.0f},0);
+      shape2.SetAsBox(2.5f, 2.5f, b2Vec2{0.0f, 7.5f},0);
       shape3.SetAsBox(2.5f, 2.5f, b2Vec2{-5.0f, -2.5f},0);
       shape4.SetAsBox(2.5f, 2.5f, b2Vec2{0.0f, -2.5f},0);
       color_ = ci::Color(11.0/255.0, 65.0/255.0, 227.0/255.0); // dark blue
@@ -87,7 +87,7 @@ Tetromino::Tetromino(b2World* world, TetrominoPieceType type) {
 //      shape.SetAsBox(2.5f, 5.0f, b2Vec2{0.0f, 5.0f}, 0);
 //      shape2.SetAsBox(5.0f, 2.5f, b2Vec2{2.5f, -2.5f},0);
       shape.SetAsBox(2.5f, 2.5f, b2Vec2{0.0f, 2.5f}, 0);
-      shape2.SetAsBox(2.5f, 2.5f, b2Vec2{0.0f, 5.0f},0);
+      shape2.SetAsBox(2.5f, 2.5f, b2Vec2{0.0f, 7.5f},0);
       shape3.SetAsBox(2.5f, 2.5f, b2Vec2{5.0f, -2.5f},0);
       shape4.SetAsBox(2.5f, 2.5f, b2Vec2{0.0f, -2.5f},0);
       color_ = ci::Color(240.0/255.0,152.0/255.0,12.0/255.0); // orange
