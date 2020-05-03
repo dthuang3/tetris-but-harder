@@ -38,59 +38,11 @@ void Game::Update() {
     return;
   }
   if (should_hold_piece_ && !already_held_current_turn_) {
-    tetris::TetrominoPieceType temp = held_piece_type_;
-    held_piece_type_ = current_piece_->GetType();
-    game_pieces_.pop_back();
-    world_->DestroyBody(current_piece_->body_);
-    if (temp == tetris::TetrominoPieceType::Empty) {
-      current_piece_ =
-          new tetris::Tetromino(world_, next_piece_type_);
-      next_piece_type_ = GetRandomTetrimino();
-    } else {
-      current_piece_ = new tetris::Tetromino(world_, temp);
-    }
-    game_pieces_.push_back(current_piece_);
-    already_held_current_turn_ = true;
+      HoldPiece();
   } else if (current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
-    size_t count = 0;
-    for (auto& piece : game_pieces_) {
-      for (b2Fixture* fixture = piece->body_->GetFixtureList(); fixture; fixture = fixture->GetNext()) {
-        size_t v = 0;
-        auto* polygon_shape_ptr = (b2PolygonShape*)fixture->GetShape();
-        for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
-          b2Vec2 local_vertex = polygon_shape_ptr->GetVertex(i);
-          b2Vec2 world_vertex = piece->body_->GetWorldPoint(local_vertex);
-          if (world_vertex.y <= 5.2f) {
-            v++;
-          }
-          if (v == 4) {
-            count++;
-          }
-        }
-      }
-    }
-    if (count == 10) {
-      std::vector<std::pair<b2Body*, b2Fixture*>> map;
-      for (auto& piece : game_pieces_) {
-        for (b2Fixture* fixture = piece->body_->GetFixtureList(); fixture; fixture = fixture->GetNext()) {
-          size_t v = 0;
-          auto* polygon_shape_ptr = (b2PolygonShape*)fixture->GetShape();
-          for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
-            b2Vec2 local_vertex = polygon_shape_ptr->GetVertex(i);
-            b2Vec2 world_vertex = piece->body_->GetWorldPoint(local_vertex);
-            if (world_vertex.y <= 5.25f) {
-              v++;
-            }
-            if (v == 4) {
-              map.emplace_back(piece->body_, fixture);
-            }
-          }
-        }
-      }
-      for (auto& ar : map) {
-        ar.first->DestroyFixture(ar.second);
-      }
-      score_ = score_ + 10000;
+    if (HasFullLine()) {
+      ClearLine();
+      score_ += 10000;
     }
     current_piece_ = new tetris::Tetromino(world_, next_piece_type_); 
     game_pieces_.push_back(current_piece_);
@@ -170,5 +122,74 @@ tetris::TetrominoPieceType Game::GetHeldType() {
 
 tetris::TetrominoPieceType Game::GetNextType() {
   return next_piece_type_;
+}
+
+void Game::HoldPiece() {
+  tetris::TetrominoPieceType temp = held_piece_type_;
+  held_piece_type_ = current_piece_->GetType();
+  game_pieces_.pop_back();
+  world_->DestroyBody(current_piece_->body_);
+  if (temp == tetris::TetrominoPieceType::Empty) {
+    current_piece_ =
+        new tetris::Tetromino(world_, next_piece_type_);
+    next_piece_type_ = GetRandomTetrimino();
+  } else {
+    current_piece_ = new tetris::Tetromino(world_, temp);
+  }
+  game_pieces_.push_back(current_piece_);
+  already_held_current_turn_ = true;
+}
+
+bool Game::HasFullLine() {
+  size_t count = 0;
+  // iterates through to check if first line is full 
+  for (auto& piece : game_pieces_) {
+    for (b2Fixture* fixture = piece->body_->GetFixtureList(); fixture; fixture = fixture->GetNext()) {
+      size_t v = 0;
+      auto* polygon_shape_ptr = (b2PolygonShape*)fixture->GetShape();
+      for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
+        b2Vec2 local_vertex = polygon_shape_ptr->GetVertex(i);
+        b2Vec2 world_vertex = piece->body_->GetWorldPoint(local_vertex);
+        if (world_vertex.y <= 5.2f) {
+          v++;
+        }
+        if (v == 4) {
+          count++;
+        }
+      }
+    }
+  }
+  return count == 10;
+}
+
+void Game::ClearLine() {
+  // Not a map because there are repeated body references
+  std::vector<std::pair<b2Body*, b2Fixture*>> fixtures_to_remove;
+  // iterate through pieces to know which ones to delete
+  for (auto& piece : game_pieces_) {
+    for (b2Fixture* fixture = piece->body_->GetFixtureList(); fixture; fixture = fixture->GetNext()) {
+      size_t v = 0;
+      auto* polygon_shape_ptr = (b2PolygonShape*)fixture->GetShape();
+      for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
+        b2Vec2 local_vertex = polygon_shape_ptr->GetVertex(i);
+        b2Vec2 world_vertex = piece->body_->GetWorldPoint(local_vertex);
+        if (world_vertex.y <= 5.25f) {
+          v++;
+        }
+        if (v == 4) {
+          fixtures_to_remove.emplace_back(piece->body_, fixture);
+        }
+      }
+    }
+  }
+  for (auto& body_fixture_pair : fixtures_to_remove) {
+    // body_fixture_pair.first = b2Body*
+    // body_fixture_pair.second = b2Fixture*
+    body_fixture_pair.first->DestroyFixture(body_fixture_pair.second);
+    // deletes body if it has no more fixtures
+    if (body_fixture_pair.first->GetFixtureList() == nullptr) {
+      world_->DestroyBody(body_fixture_pair.first);
+    }
+  }
 }
 }

@@ -39,6 +39,9 @@ class Game {
  private:
   void SetupTetrisBoundary();
   tetris::TetrominoPieceType GetRandomTetrimino();
+  void HoldPiece();
+  bool HasFullLine();
+  void ClearLine();
   std::random_device random_device_;
   
 };
