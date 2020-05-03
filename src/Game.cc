@@ -18,6 +18,7 @@ Game::Game() {
   held_piece_type_ = tetris::TetrominoPieceType::Empty;
   already_held_current_turn_ = false;
 }
+
 Game::~Game() {
   delete world_;
   for (auto& piece : game_pieces_) {
@@ -35,10 +36,6 @@ void Game::Update() {
 //    char letter = GetRandomTetrimino();
 //    current_piece_ = new tetris::Tetromino(world_, letter);
 //  }
-  if (current_piece_ == nullptr) {
-//    current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
-    current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
-  }
   world_->Step(1.0f / 60.0f, 8,3);
   score_++;
   bool past_threshold = current_piece_->body_->GetPosition().y < kTopOutHeight;
@@ -89,7 +86,7 @@ void Game::Update() {
           for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
             b2Vec2 local_vertex = polygon_shape_ptr->GetVertex(i);
             b2Vec2 world_vertex = piece->body_->GetWorldPoint(local_vertex);
-            if (world_vertex.y <= 5.2f) {
+            if (world_vertex.y <= 5.25f) {
               v++;
             }
             if (v == 4) {
@@ -101,6 +98,7 @@ void Game::Update() {
       for (auto& ar : map) {
         ar.first->DestroyFixture(ar.second);
       }
+      score_ = score_ + 10000;
     }
     current_piece_ = new tetris::Tetromino(world_, next_piece_type_); 
     game_pieces_.push_back(current_piece_);

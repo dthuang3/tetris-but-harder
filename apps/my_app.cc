@@ -11,7 +11,6 @@ MyApp::MyApp() = default;
 
 void MyApp::setup() {
   game_ = new tetris::Game();
-  
 //  b2Vec2 gravity_{0.0f, -20.0f};
 //  world_ = new b2World(gravity_);
 //  b2BodyDef boundary_def;
