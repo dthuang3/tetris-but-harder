@@ -28,14 +28,6 @@ Game::~Game() {
 }
 
 void Game::Update() {
-//  if (is_topped_out_) {
-//    return;
-//  }
-//  if (current_piece_->body_->GetLinearVelocity().Length() <= 0.5 &&
-//      current_piece_->body_->GetAngularVelocity() <= 1) {
-//    char letter = GetRandomTetrimino();
-//    current_piece_ = new tetris::Tetromino(world_, letter);
-//  }
   world_->Step(1.0f / 60.0f, 8,3);
   score_++;
   bool past_threshold = current_piece_->body_->GetPosition().y < kTopOutHeight;
@@ -106,16 +98,6 @@ void Game::Update() {
     next_piece_type_ = GetRandomTetrimino();
   }
   should_hold_piece_ = false;
-//  float recent = 200;
-//  float speedNow = current_piece_->body_->GetLinearVelocity().Length();
-//  recent = 0.1 * speedNow + 0.9 * recent;
-//  b2Vec2 s;
-//  float a;
-//  world_->Step(1.0f/60.0f, 8, 3);
-//  s = current_piece_->body_->GetPosition();
-//  a = current_piece_->body_->GetAngularVelocity();
-//  speedNow = current_piece_->body_->GetLinearVelocity().Length();
-//  recent = 0.1 * speedNow + 0.9 * recent;
 }
 
 void Game::Draw() {
