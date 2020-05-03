@@ -150,7 +150,7 @@ bool Game::HasFullLine() {
       for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
         b2Vec2 local_vertex = polygon_shape_ptr->GetVertex(i);
         b2Vec2 world_vertex = piece->body_->GetWorldPoint(local_vertex);
-        if (world_vertex.y <= 5.2f) {
+        if (world_vertex.y <= 5.25f) {
           v++;
         }
         if (v == 4) {
@@ -186,10 +186,6 @@ void Game::ClearLine() {
     // body_fixture_pair.first = b2Body*
     // body_fixture_pair.second = b2Fixture*
     body_fixture_pair.first->DestroyFixture(body_fixture_pair.second);
-    // deletes body if it has no more fixtures
-    if (body_fixture_pair.first->GetFixtureList() == nullptr) {
-      world_->DestroyBody(body_fixture_pair.first);
-    }
   }
 }
 }
