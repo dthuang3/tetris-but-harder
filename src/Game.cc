@@ -17,6 +17,7 @@ Game::Game() {
   should_hold_piece_ = false;
   held_piece_type_ = tetris::TetrominoPieceType::Empty;
   already_held_current_turn_ = false;
+  is_paused = false;
 }
 
 Game::~Game() {
@@ -34,7 +35,7 @@ void Game::Update() {
   if (!past_threshold && current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
     is_topped_out_ = true;
   }
-  if (is_topped_out_) {
+  if (is_topped_out_ || is_paused) {
     return;
   }
   if (should_hold_piece_ && !already_held_current_turn_) {
@@ -104,6 +105,15 @@ void Game::SetupTetrisBoundary() {
 
 bool Game::IsToppedOut() {
   return is_topped_out_;
+}
+
+bool Game::IsPaused() {
+  return is_paused; 
+}
+
+bool Game::Pause() {
+  is_paused = !is_paused;
+  return is_paused;
 }
 
 tetris::Tetromino* Game::GetCurrentPiece() {

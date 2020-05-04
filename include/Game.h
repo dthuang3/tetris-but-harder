@@ -24,6 +24,8 @@ class Game {
   tetris::Tetromino* GetCurrentPiece();
   void HoldCurrentPiece();
   bool IsToppedOut();
+  bool IsPaused();
+  bool Pause();
   void Draw();
   int32_t GetScore();
   tetris::TetrominoPieceType GetHeldType();
@@ -39,6 +41,7 @@ class Game {
   std::vector<tetris::Tetromino*> game_pieces_;
   tetris::TetrominoPieceType next_piece_type_;
   bool is_topped_out_;
+  bool is_paused;
   int32_t score_; 
   tetris::TetrominoPieceType held_piece_type_;
   bool should_hold_piece_;
