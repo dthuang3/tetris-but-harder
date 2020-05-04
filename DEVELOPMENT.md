@@ -76,7 +76,7 @@ line and even harder for user to even make a row~~
     *[ ] Documentation / README.md
     *[ ] ~~Game Over Screen to see score~~
 * Extra ideas (continued):
-    * [ ] Pause feature (menu if time)
+    * [x] Pause feature (menu if time)
         *~~menu will have resume, new game, quit~~
         
 ### 5/2/20
@@ -91,4 +91,8 @@ line and even harder for user to even make a row~~
 ### 5/3/2020
 * Allow player to pause/play game
 * Used consts and broke long functions into smaller functions to improve readability
-* 
+* Fix line spacing and deleted unnecessary lines 
+* Still need to:
+    * [ ] Documentation / README.md
+    * [ ] Update PROPOSAL.md
+    * [ ] Game end screen
