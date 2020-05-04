@@ -4,12 +4,13 @@
 
 #ifndef FINALPROJECT_GAME_H
 #define FINALPROJECT_GAME_H
-#include <Box2D/Box2D.h>
 
+#include <Box2D/Box2D.h>
 #include <random>
 #include <vector>
-
 #include "Tetromino.h"
+#include <cinder/app/App.h>
+
 namespace tetris {
 
 class Game {

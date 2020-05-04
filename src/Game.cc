@@ -2,7 +2,6 @@
 // Created by super on 4/21/2020.
 //
 #include <Game.h>
-#include <cinder/app/App.h>
 
 namespace tetris {
 
