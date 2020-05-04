@@ -2,13 +2,12 @@
 
 #ifndef FINALPROJECT_APPS_MYAPP_H_
 #define FINALPROJECT_APPS_MYAPP_H_
-` 
+
 #include <cinder/app/App.h>
-#include <../blocks/Box2D/src/Box2D/Collision/Shapes/b2PolygonShape.h>
-#include <../blocks/Box2D/src/Box2D/Dynamics/b2World.h>
+#include <Box2D/Collision/Shapes/b2PolygonShape.h>
+#include <Box2D/Dynamics/b2World.h>
 #include <cinder/gl/draw.h>
 #include <cinder/gl/gl.h>
-#include <../include/mylibrary/example.h>
 #include <Game.h>
 #include <Box2D/Dynamics/b2Body.h>
 #include <cinder/app/App.h>
@@ -29,8 +28,6 @@ class MyApp : public cinder::app::App {
   void mouseDown(cinder::app::MouseEvent) override;
  private:
   static void DrawTetrisMatrix();
-  static void DrawHeldSection(tetris::TetrominoPieceType type);
-  static void DrawNextSection(tetris::TetrominoPieceType type);
   static void DrawSectionAt(const ci::vec2& location, tetris::TetrominoPieceType type);
   static void DrawZPiece(const ci::vec2& location);
   static void DrawLPiece(const ci::vec2& location);
