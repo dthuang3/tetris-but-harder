@@ -15,7 +15,11 @@ void MyApp::setup() {
 
 void MyApp::update() {
   if (game_->IsToppedOut()) {
+    // enter drawing end screen
     return;
+  }
+  if (game_->IsPaused()) {
+    // enter pause mode;
   }
   game_->Update();
 }
@@ -52,6 +56,9 @@ void MyApp::keyDown(KeyEvent event) {
       break;
     case KeyEvent::KEY_RSHIFT:
       game_->HoldCurrentPiece();
+      break;
+    case KeyEvent::KEY_p:
+      game_->Pause(); 
       break;
   }
 }

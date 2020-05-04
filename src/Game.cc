@@ -29,14 +29,14 @@ Game::~Game() {
 }
 
 void Game::Update() {
+  if (is_topped_out_ || is_paused) {
+    return;
+  }
   world_->Step(1.0f / 60.0f, 8,3);
   score_++;
   bool past_threshold = current_piece_->body_->GetPosition().y < kTopOutHeight;
   if (!past_threshold && current_piece_->body_->GetLinearVelocity().Length() < 0.1f) {
     is_topped_out_ = true;
-  }
-  if (is_topped_out_ || is_paused) {
-    return;
   }
   if (should_hold_piece_ && !already_held_current_turn_) {
       HoldPiece();
