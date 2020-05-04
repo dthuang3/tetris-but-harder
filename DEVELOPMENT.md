@@ -57,7 +57,7 @@
 * Still need to:
     * [x] Unit testing
     * [x] Display next piece 
-    * [ ] Clean up magic numbers / use consts
+    * [x] Clean up magic numbers / use consts
     * [ ] Documentation / README.md
     * [ ] Game Over Screen to see score.
 * Extra ideas (continued):
@@ -72,18 +72,23 @@ line and even harder for user to even make a row~~
 * Created a new game on mouse click rather than resetting game, logically, because it is "new" game and fixes the memory leak error due to no delete at end of game
 * Added PROPOSAL.md
 * Still need to:
-    *[ ] Clean up magic numbers / use consts / fix spacing and comments
+    *[x] Clean up magic numbers / use consts / fix spacing and comments
     *[ ] Documentation / README.md
     *[ ] ~~Game Over Screen to see score~~
 * Extra ideas (continued):
     * [ ] Pause feature (menu if time)
-        * menu will have resume, new game, quit
+        *~~menu will have resume, new game, quit~~
         
 ### 5/2/20
 * Feature to clear lines when the row is matched end to end (10 blocks/squares/fixtures)
 * Separate the tetrominos into 4 squares instead of 2 rectangles to allow them to be deleted properly when clearing lines
 * Still need to: 
-    *[ ] Clean up magic numbers / use consts / fix spacing and comments
-    *[ ] Improve modularity / function usage
+    *[x] Clean up magic numbers / use consts / fix spacing and comments
+    *[x] Improve modularity / function usage
     *[ ] Documentation / README.md
-    *[ ] Pause ability (not necessarily a visible menu)
+    *[x] Pause ability (not necessarily a visible menu)
+    
+### 5/3/2020
+* Allow player to pause/play game
+* Used consts and broke long functions into smaller functions to improve readability
+* 
