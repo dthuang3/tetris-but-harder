@@ -3,8 +3,6 @@
 //
 
 #include "Tetromino.h"
-#include <cinder/gl/gl.h>
-#include <cinder/PolyLine.h>
 
 namespace tetris {
 
