@@ -2,7 +2,7 @@
 
 #ifndef FINALPROJECT_APPS_MYAPP_H_
 #define FINALPROJECT_APPS_MYAPP_H_
-
+` 
 #include <cinder/app/App.h>
 #include <../blocks/Box2D/src/Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <../blocks/Box2D/src/Box2D/Dynamics/b2World.h>
@@ -31,6 +31,14 @@ class MyApp : public cinder::app::App {
   static void DrawTetrisMatrix();
   static void DrawHeldSection(tetris::TetrominoPieceType type);
   static void DrawNextSection(tetris::TetrominoPieceType type);
+  static void DrawSectionAt(const ci::vec2& location, tetris::TetrominoPieceType type);
+  static void DrawZPiece(const ci::vec2& location);
+  static void DrawLPiece(const ci::vec2& location);
+  static void DrawJPiece(const ci::vec2& location);
+  static void DrawOPiece(const ci::vec2& location);
+  static void DrawIPiece(const ci::vec2& location);
+  static void DrawTPiece(const ci::vec2& location);
+  static void DrawSPiece(const ci::vec2& location);
   tetris::Game* game_;
 };
 
