@@ -7,7 +7,8 @@ Author: Daniel Huang
 #### Project Description
 For this project, I wish to create a model of the classic Tetris game with a twist: the game pieces will be controlled by
 rotating precisely (rather than 90 degrees) and they will follow the laws of motion. Because of the significant gap in 
-difficulty, scoring will be based on time spent alive without topping out, not based on the lines cleared.
+difficulty, scoring will be based on time spent alive without topping out. Points will also be awarded for clearing a
+the first/bottom line.
 
 #### Background Knowledge
 The background knowledge I have for this project includes physics (mechanics) from class. Some base concepts that I will
