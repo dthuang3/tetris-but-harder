@@ -25,7 +25,11 @@ void MyApp::update() {
 }
 
 void MyApp::draw() {
-  ci::gl::clear(ci::Color{125.0f/255.0f, 5.0f/255.0f, 119.0f/255.0f}, true);
+  ci::gl::clear();
+  if (game_->IsToppedOut()) {
+    DrawEndScreen(game_->GetScore());
+    return;
+  }
   const cinder::ivec2 size = {300,200};
   const cinder::vec2 location = {600.0f, 200.0f};
   const cinder::Color color = cinder::Color{1,1,1};
@@ -56,6 +60,9 @@ void MyApp::keyDown(KeyEvent event) {
     case KeyEvent::KEY_c:
       game_->GetCurrentPiece()->body_->ApplyTorque(90000.0f);
       break;
+    case KeyEvent::KEY_DOWN:
+      game_->GetCurrentPiece()->body_->ApplyForceToCenter(b2Vec2{0.0f, -10000.0f});
+      break;
     case KeyEvent::KEY_RSHIFT:
       game_->HoldCurrentPiece();
       break;
@@ -79,10 +86,22 @@ void MyApp::DrawTetrisMatrix() {
   bool is_dash_blank = true;
   for (int i = 0; i < 21; i++) {
       if (is_dash_blank) {
-          cinder::gl::drawLine(ci::vec2{tetris::kXMargin + i*kTileSize*0.5, 100.0f}, ci::vec2{tetris::kXMargin + kTileSize * 0.5f * i + 20, 100.0f});
+          cinder::gl::drawLine(ci::vec2{tetris::kXMargin + i * kTileSize * 0.5, 100.0f}, ci::vec2{tetris::kXMargin + kTileSize * 0.5f * i + 20, 100.0f});
       }
       is_dash_blank = !is_dash_blank;
   }
+}
+
+void MyApp::DrawEndScreen(int32_t score) {
+  cinder::gl::color(1,1,1);
+  auto width = (float) ci::app::getWindowWidth();
+  auto height = (float) ci::app::getWindowHeight();
+  cinder::gl::drawSolidRect(cinder::Rectf{0.25f * width, 0.25f * height, 0.75f * width, 0.75f * height});
+  const cinder::Color color = cinder::Color{0.0f,0.0f,0.0f};
+  const std::string score_str = std::to_string(score);
+  cinder::gl::drawString("Final Score:", ci::vec2{width * 0.5f - 130.0f, height * 0.5f - 52.5f}, color, ci::Font{kNormalFont, 60});
+  cinder::gl::drawString(score_str, ci::vec2{width * 0.5f - 70.0f, height * 0.5f}, color, ci::Font{kNormalFont, 60});
+  cinder::gl::drawString("Click anywhere to restart", ci::vec2{width * 0.5f - 130.0f, height * 0.7f},  color, ci::Font{kNormalFont, 30});
 }
 
 void MyApp::DrawSectionAt(const ci::vec2& location, tetris::TetrominoPieceType type) {
@@ -166,7 +185,7 @@ void MyApp::DrawTPiece(const ci::vec2& location) {
 }
 
 void MyApp::DrawZPiece(const ci::vec2& location) {
-  ci::gl::color(tetris::kGreen);
+  ci::gl::color(tetris::kRed);
   ci::gl::drawSolidRect(cinder::Rectf{location.x - kTileSize * 1.5f,
                                       location.y - kTileSize,
                                       location.x + kTileSize * 0.5f,
@@ -178,7 +197,7 @@ void MyApp::DrawZPiece(const ci::vec2& location) {
 }
 
 void MyApp::DrawSPiece(const ci::vec2& location) {
-  ci::gl::color(tetris::kRed);
+  ci::gl::color(tetris::kGreen);
   ci::gl::drawSolidRect(cinder::Rectf{location.x - kTileSize * 0.5f,
                                       location.y - kTileSize,
                                       location.x + kTileSize * 1.5f,

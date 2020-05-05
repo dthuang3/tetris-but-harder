@@ -13,6 +13,7 @@
 #include <cinder/app/App.h>
 #include <cinder/Log.h>
 #include <Box2dUtils.h>
+
 namespace myapp {
 
 const char kNormalFont[] = "Arial";
@@ -28,6 +29,7 @@ class MyApp : public cinder::app::App {
   void mouseDown(cinder::app::MouseEvent) override;
  private:
   static void DrawTetrisMatrix();
+  static void DrawEndScreen(int32_t score);
   static void DrawSectionAt(const ci::vec2& location, tetris::TetrominoPieceType type);
   static void DrawZPiece(const ci::vec2& location);
   static void DrawLPiece(const ci::vec2& location);
