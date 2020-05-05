@@ -93,6 +93,15 @@ line and even harder for user to even make a row~~
 * Used consts and broke long functions into smaller functions to improve readability
 * Fix line spacing and deleted unnecessary lines 
 * Still need to:
-    * [ ] Documentation / README.md
-    * [ ] Update PROPOSAL.md
-    * [ ] Game end screen
+    * [x] Documentation 
+    * [ ] README.md
+    * [x] Update PROPOSAL.md
+    * [x] Game end screen
+
+### 5/4/2020
+* Created Game end screen to show player's final score
+* Added documentation for functions and members
+* Updated PROPOSAL.md with more accurate description of project
+* Still need to:
+    * [ ] README.md
+    * [ ] Style check with Google C++ Style Guide
