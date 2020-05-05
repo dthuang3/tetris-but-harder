@@ -157,7 +157,8 @@ bool Game::HasFullLine() {
   const float line_threshold = 5.25f;
   // iterates through to check if first line is full 
   for (auto& piece : game_pieces_) {
-    for (b2Fixture* fixture = piece->body_->GetFixtureList(); fixture; fixture = fixture->GetNext()) {
+    for (b2Fixture* fixture = piece->body_->GetFixtureList(); fixture; 
+    fixture = fixture->GetNext()) {
       size_t v = 0;
       auto* polygon_shape_ptr = (b2PolygonShape*)fixture->GetShape();
       for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
@@ -182,7 +183,8 @@ void Game::ClearLine() {
   std::vector<std::pair<b2Body*, b2Fixture*>> fixtures_to_remove;
   // iterate through pieces to know which ones to delete
   for (auto& piece : game_pieces_) {
-    for (b2Fixture* fixture = piece->body_->GetFixtureList(); fixture; fixture = fixture->GetNext()) {
+    for (b2Fixture* fixture = piece->body_->GetFixtureList(); fixture; 
+    fixture = fixture->GetNext()) {
       size_t v = 0;
       auto* polygon_shape_ptr = (b2PolygonShape*)fixture->GetShape();
       for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {

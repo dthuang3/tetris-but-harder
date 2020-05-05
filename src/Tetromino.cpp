@@ -102,7 +102,8 @@ Tetromino::Tetromino(b2World* world, TetrominoPieceType type) {
 void Tetromino::Draw() {
   std::vector<ci::vec2> vertex_vector;
   // gets all the vertices of a specific shape and draws around them
-  for (b2Fixture* fixture = body_->GetFixtureList(); fixture; fixture = fixture->GetNext()) {
+  for (b2Fixture* fixture = body_->GetFixtureList(); fixture; 
+  fixture = fixture->GetNext()) {
     auto* polygon_shape_ptr = (b2PolygonShape*)fixture->GetShape();
     for (size_t i = 0; i < polygon_shape_ptr->GetVertexCount(); i++) {
       b2Vec2 local_vertex = polygon_shape_ptr->GetVertex(i);
