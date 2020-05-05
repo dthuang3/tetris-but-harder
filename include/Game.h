@@ -18,24 +18,87 @@ class Game {
   const float kTopOutHeight = 90.0f; 
   const size_t kFixturesToClearRow = 10;
  public:
+  /**
+   * Constructor for new game
+   */
   Game(); 
+  /**
+   * Delete operator for game
+   */
   ~Game();
+  /**
+   * Updates the current game by one frame equal to 1/60 seconds
+   */
   void Update();
-  b2World* world_;
+  /**
+   * Returns the current piece that is falling
+   * @return pointer to the current tetromino piece 
+   */
   tetris::Tetromino* GetCurrentPiece();
+  /**
+   * Issues command to hold current piece
+   */
   void HoldCurrentPiece();
+  /**
+   * Returns if the pieces have topped out / reached the threshold
+   * @return true if reached threshold, false if below threshold
+   */
   bool IsToppedOut();
+  /**
+   * Returns if the current game is paused
+   * @return true if paused, false if not paused
+   */
   bool IsPaused();
-  bool Pause();
+  /**
+   * Pause/Resume the current game
+   */
+  void Pause();
+  /**
+   * Draws the current game state including all the pieces and their orientation
+   */
   void Draw();
+  /**
+   * Returns the current player score
+   * @return unsigned integer score
+   */
   int32_t GetScore();
+  /**
+   * Returns the type of the currently held tetromino
+   * @return type of the piece in the hold chamber
+   */
   tetris::TetrominoPieceType GetHeldType();
+  /**
+   * Returns the type of the next piece in the rotation
+   * @return type of the next piece to come
+   */
   tetris::TetrominoPieceType GetNextType();
+  /**
+   * The physics world that the game uses
+   */
+  b2World* world_;
  private:
+  /**
+   * Sets the boundaries for the game, including the ground, ceiling, and left
+   * and right walls
+   */
   void SetupTetrisBoundary();
+  /**
+   * Returns a random tetromino type from a uniform distribution of integers
+   * @return 
+   */
   tetris::TetrominoPieceType GetRandomTetrimino();
+  /**
+   * Holds the current piece into the hold chamber 
+   */
   void HoldPiece();
+  /**
+   * Checks if the first row has a full line
+   * @return 
+   */
   bool HasFullLine();
+  /**
+   * Clears the first row 
+   */
   void ClearLine();
  private:
   tetris::Tetromino* current_piece_;

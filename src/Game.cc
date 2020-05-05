@@ -110,9 +110,8 @@ bool Game::IsPaused() {
   return is_paused; 
 }
 
-bool Game::Pause() {
+void Game::Pause() {
   is_paused = !is_paused;
-  return is_paused;
 }
 
 tetris::Tetromino* Game::GetCurrentPiece() {

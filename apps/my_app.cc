@@ -36,20 +36,20 @@ void MyApp::draw() {
   const std::string score = std::to_string(game_->GetScore());
   DrawTetrisMatrix();
   ci::gl::drawString("Hold", ci::vec2{580.0f, 300.0f}, 
-      color, ci::Font{kNormalFont, 40});
+      color, ci::Font{kNormalFont, 30});
   // hold section
   DrawSectionAt(ci::vec2{620.0f, 420.0f}, 
       game_->GetHeldType());
   // next section
   ci::gl::drawString("Next", ci::vec2{580.0f, 500.0f}, 
-      color, ci::Font(kNormalFont, 40));
+      color, ci::Font(kNormalFont, 30));
   DrawSectionAt(ci::vec2{620.0f, 630.0f}, 
       game_->GetNextType());
-  game_->Draw();
   ci::gl::drawString("Score:", ci::vec2{580.0f, 150.0f}, 
-      color, ci::Font("Arial", 40));
+      color, ci::Font(kNormalFont, 30));
   ci::gl::drawString(score, ci::vec2{580.0f, 200.0f}, 
-      color, ci::Font{"Arial", 40});
+      color, ci::Font{kNormalFont,30});
+  game_->Draw();
 }
 
 void MyApp::keyDown(KeyEvent event) {
@@ -125,16 +125,16 @@ void MyApp::DrawEndScreen(int32_t score) {
       ci::vec2{width * 0.5f - 130.0f, 
                height * 0.5f - 52.5f}, 
                color, 
-               ci::Font{kNormalFont, 60});
+               ci::Font{kNormalFont, 30});
   cinder::gl::drawString(score_str, 
       ci::vec2{width * 0.5f - 70.0f,
                height * 0.5f},
                color,
-               ci::Font{kNormalFont, 60});
+               ci::Font{kNormalFont, 50});
   cinder::gl::drawString("Click anywhere to restart", 
       ci::vec2{width * 0.5f - 130.0f, height * 0.7f},  
       color,
-      ci::Font{kNormalFont, 30});
+      ci::Font{kNormalFont, 15});
 }
 
 void MyApp::DrawSectionAt(const ci::vec2& location, 

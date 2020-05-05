@@ -34,12 +34,34 @@ enum TetrominoPieceType {
 class Tetromino {
   const float kDensity = 1.0f;
  public:
+  /**
+   * Constructor a tetromino object
+   * @param world the world the tetromino's body should be created in
+   * @param type the type of piece // I, J, L, T, Z, S, O
+   */
   Tetromino(b2World* world, TetrominoPieceType type);
-  b2Body* body_;
+  /**
+   * Draws the current tetromino piece inside the cinder window
+   * This function takes care of transformations / coordinate changes
+   */
   void Draw();
+  /**
+   * Returns the type of tetromino
+   * @return 
+   */
   tetris::TetrominoPieceType GetType();
+  /**
+   * The body inside the box2d world that the tetromino is based on
+   */
+  b2Body* body_;
  private:
+  /**
+   * The type of piece the tetromino is (I, J, L, T, Z, S, O)
+   */
   TetrominoPieceType type_;
+  /**
+   * Color of the tetromino (based on standard Tetris colors)
+   */
   ci::Color color_;
 };
 
