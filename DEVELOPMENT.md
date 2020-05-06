@@ -105,3 +105,12 @@ line and even harder for user to even make a row~~
 * Still need to:
     * [x] README.md
     * [x] Style check with Google C++ Style Guide
+ 
+### 5/5/2020 - 5/6/2020
+* Delete unused files
+* Fixed grammatical errors inside README.md
+* Edited unit tests
+* Things to keep in mind for continuing projects:
+    * Organize object structure - think about using polymorphism/inheritance
+    * ^ could benefit with REAL test-driven development
+    * Plan ahead, read documentation.
