@@ -11,6 +11,10 @@ MyApp::MyApp() = default;
 
 void MyApp::setup() {
   game_ = new tetris::Game();
+  cinder::audio::SourceFileRef source_file = cinder::audio::load(
+      loadAsset("../assets/Disfigure - Blank [NCS Release].mp3"));
+  background_music_ = cinder::audio::Voice::create(source_file);
+  background_music_->start();
 }
 
 void MyApp::update() {
@@ -22,6 +26,9 @@ void MyApp::update() {
     // enter pause mode;
   }
   game_->Update();
+  if (!background_music_->isPlaying()) {
+    background_music_->start();
+  }
 }
 
 void MyApp::draw() {
@@ -76,7 +83,8 @@ void MyApp::keyDown(KeyEvent event) {
       game_->HoldCurrentPiece();
       break;
     case KeyEvent::KEY_p:
-      game_->Pause(); 
+      game_->Pause();
+      game_->IsPaused() ? background_music_->pause() : background_music_->start();
       break;
   }
 }

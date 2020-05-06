@@ -38,7 +38,7 @@ class Tetromino {
    * @param world the world the tetromino's body should be created in
    * @param type the type of piece // I, J, L, T, Z, S, O
    */
-  Tetromino(b2World* world, TetrominoPieceType type);
+  Tetromino(b2World& world, TetrominoPieceType type);
   /**
    * Draws the current tetromino piece inside the cinder window
    * This function takes care of transformations / coordinate changes

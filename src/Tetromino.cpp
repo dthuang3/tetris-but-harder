@@ -6,11 +6,11 @@
 
 namespace tetris {
 
-Tetromino::Tetromino(b2World* world, TetrominoPieceType type) {
+Tetromino::Tetromino(b2World& world, TetrominoPieceType type) {
   b2BodyDef tetrimino_def;
   tetrimino_def.type = b2_dynamicBody;
   tetrimino_def.position.Set(kStartingPosition.x, kStartingPosition.y);
-  body_ = world->CreateBody(&tetrimino_def);
+  body_ = world.CreateBody(&tetrimino_def);
   b2PolygonShape shape, shape2, shape3, shape4;
   b2FixtureDef fixture_def, fixture_def2, fixture_def3, fixture_def4;
   fixture_def.shape = &shape;

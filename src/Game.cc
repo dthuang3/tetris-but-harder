@@ -8,7 +8,7 @@ namespace tetris {
 Game::Game() {
   world_ = new b2World(kGravity_);
   SetupTetrisBoundary();
-  current_piece_ = new tetris::Tetromino(world_, GetRandomTetrimino());
+  current_piece_ = new tetris::Tetromino(*world_, GetRandomTetrimino());
   next_piece_type_ = GetRandomTetrimino();
   game_pieces_.push_back(current_piece_);
   is_topped_out_ = false;
@@ -44,7 +44,7 @@ void Game::Update() {
       ClearLine();
       score_ += 10000;
     }
-    current_piece_ = new tetris::Tetromino(world_, next_piece_type_); 
+    current_piece_ = new tetris::Tetromino(*world_, next_piece_type_); 
     game_pieces_.push_back(current_piece_);
     already_held_current_turn_ = false;
     next_piece_type_ = GetRandomTetrimino();
@@ -141,10 +141,10 @@ void Game::HoldPiece() {
   world_->DestroyBody(current_piece_->body_);
   if (temp == tetris::TetrominoPieceType::Empty) {
     current_piece_ =
-        new tetris::Tetromino(world_, next_piece_type_);
+        new tetris::Tetromino(*world_, next_piece_type_);
     next_piece_type_ = GetRandomTetrimino();
   } else {
-    current_piece_ = new tetris::Tetromino(world_, temp);
+    current_piece_ = new tetris::Tetromino(*world_, temp);
   }
   game_pieces_.push_back(current_piece_);
   already_held_current_turn_ = true;

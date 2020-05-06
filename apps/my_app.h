@@ -8,6 +8,7 @@
 #include <Box2D/Dynamics/b2World.h>
 #include <cinder/gl/draw.h>
 #include <cinder/gl/gl.h>
+#include <cinder/audio/audio.h>
 #include <Game.h>
 #include <Box2D/Dynamics/b2Body.h>
 #include <cinder/app/App.h>
@@ -81,6 +82,10 @@ class MyApp : public cinder::app::App {
    * The current running game in the app
    */
   tetris::Game* game_;
+  /**
+   * Voiceref to song playing in the background
+   */
+  ci::audio::VoiceRef background_music_;
 };
 
 }  // namespace myapp
