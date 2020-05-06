@@ -33,7 +33,7 @@ library and the [Box2D] physics engine.
 Tetris but Harder requires these three dependencies to work properly, you can download them at their respective links.
 More information about using CMake for external libraries can be found [here][1]. More information about installing Cinder
 can be found under part 0 [here][2]. Cinder requires Visual Studio 2015 to work properly, so make sure to set the 
-toolchain for you environment to Visual Studio 14.0. 
+toolchain for your environment to Visual Studio 14.0. 
 
 After installation, you can clone this repo into: `~/Cinder/my-projects`.
 Keep in mind that the `CMakeLists.txt` of the Cinder library will be inside `~/Cinder`, which is two directories above
@@ -58,11 +58,10 @@ Z | [ Z ] Rotates the game piece counter-clockwise around the center of mass
 C | [ C ] Rotates the game piece clockwise around the center of mass 
 RShift | [Shift] Holds the current piece
  
-You can clear lines by having 10 blocks line up on the bottom row.
+You can clear lines by lining up 10 blocks on the bottom row.
 
 ![](assets/clear_line_example.gif)
- 
-### Development
 
 ### Code Style
-All code follows the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
+Code follows the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html). Some discrepancies may
+occur from the usage of external libraries.
