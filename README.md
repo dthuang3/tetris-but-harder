@@ -8,9 +8,16 @@ layout.
 
 **Author**: Daniel Huang - [`dthuang3@illinois.edu`](mailto:dthuang3@illinois.edu)
 
+* [Overview](#overview)
+* [Setup](#setup)
+* [Playing the game](#playing-the-game)
+    * [Controls](#controls)
+
+### Overview
 Tetris but Harder is a game modeled after the original Tetris tile-matching game by Alexey Pajitnov. It includes the
 basic concepts of the game as adapted by Nintendo as well as a entirely physics-based world. The game pieces move left,
-right, and rotate according to the laws of physics/mechanics.
+right, and rotate according to the laws of physics/mechanics. This program primarily uses the [Cinder] creative coding
+library and the [Box2D] physics engine.
 
 ![](assets/tetris_demo.PNG)
 
@@ -39,6 +46,7 @@ the project location (`../../`).
 
 The goal of the game is to stay alive as long as possible and earn points by clearing lines. Don't rage quit!
 
+#### Controls
 The game has six main controls: left, right, down, Z, C, and shift.
 
 Key | Action
@@ -50,8 +58,11 @@ Z | [ Z ] Rotates the game piece counter-clockwise around the center of mass
 C | [ C ] Rotates the game piece clockwise around the center of mass 
 RShift | [Shift] Holds the current piece
  
-You can clear lines by having 10 blocks line up on the bottom row. 
+You can clear lines by having 10 blocks line up on the bottom row.
+
 ![](assets/clear_line_example.gif)
  
+### Development
+
 ### Code Style
 All code follows the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
