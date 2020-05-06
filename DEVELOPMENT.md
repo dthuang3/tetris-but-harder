@@ -58,8 +58,8 @@
     * [x] Unit testing
     * [x] Display next piece 
     * [x] Clean up magic numbers / use consts
-    * [ ] Documentation / README.md
-    * [ ] Game Over Screen to see score.
+    * [x] Documentation / README.md
+    * [x] Game Over Screen to see score.
 * Extra ideas (continued):
     * Pause feature/menu
     
@@ -73,8 +73,8 @@ line and even harder for user to even make a row~~
 * Added PROPOSAL.md
 * Still need to:
     *[x] Clean up magic numbers / use consts / fix spacing and comments
-    *[ ] Documentation / README.md
-    *[ ] ~~Game Over Screen to see score~~
+    *[x] Documentation / README.md
+    *[x] ~~Game Over Screen to see score~~
 * Extra ideas (continued):
     * [x] Pause feature (menu if time)
         *~~menu will have resume, new game, quit~~
@@ -85,7 +85,7 @@ line and even harder for user to even make a row~~
 * Still need to: 
     *[x] Clean up magic numbers / use consts / fix spacing and comments
     *[x] Improve modularity / function usage
-    *[ ] Documentation / README.md
+    *[x] Documentation / README.md
     *[x] Pause ability (not necessarily a visible menu)
     
 ### 5/3/2020
@@ -94,7 +94,7 @@ line and even harder for user to even make a row~~
 * Fix line spacing and deleted unnecessary lines 
 * Still need to:
     * [x] Documentation 
-    * [ ] README.md
+    * [x] README.md
     * [x] Update PROPOSAL.md
     * [x] Game end screen
 
@@ -103,5 +103,5 @@ line and even harder for user to even make a row~~
 * Added documentation for functions and members
 * Updated PROPOSAL.md with more accurate description of project
 * Still need to:
-    * [ ] README.md
-    * [ ] Style check with Google C++ Style Guide
+    * [x] README.md
+    * [x] Style check with Google C++ Style Guide
