@@ -5,7 +5,6 @@
 #ifndef FINALPROJECT_TETROMINOS_H
 #define FINALPROJECT_TETROMINOS_H
 
-#include <Box2dUtils.h>
 #include <Box2D/Box2D.h>
 #include <cinder/gl/gl.h>
 #include <cinder/PolyLine.h>

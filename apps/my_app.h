@@ -12,7 +12,6 @@
 #include <Box2D/Dynamics/b2Body.h>
 #include <cinder/app/App.h>
 #include <cinder/Log.h>
-#include <Box2dUtils.h>
 
 namespace myapp {
 
